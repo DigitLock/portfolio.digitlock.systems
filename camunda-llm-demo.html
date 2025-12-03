@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='58' fill='%233c5ff8'/><text x='50' y='50' font-family='Arial, sans-serif' font-size='70' font-weight='bold' fill='white' text-anchor='middle' dominant-baseline='central'>I K</text></svg>">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Camunda LLM Demo - Igor Kudinov Portfolio</title>
+    <meta name="description" content="Production-ready BPMN 2.0 workflow for automated airline ticket refund processing demo">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="css/project-page.css">
+</head>
+<body>
+    <div class="container">
+        <nav class="breadcrumbs">
+            <div class="breadcrumbs-left">
+                <a href="https://portfolio.digitlock.systems" class="back-btn">
+                    <i class="fas fa-arrow-left"></i>
+                    <span>Back to Portfolio</span>
+                </a>
+
+                <span class="breadcrumbs-separator"> -> </span>
+
+                <span class="breadcrumbs-current">Camunda LLM Demo</span>
+            </div>
+        </nav>
+
+        <h1>
+            <img src="/static/camunda-icon.png" style="height: 38px;">
+            <span>Camunda with</span>
+            <img src="/static/openai-icon.webp" style="height: 34px;">
+            <span>LLM Integration</span>
+        </h1>
+        <p class="subtitle">Simplified Ticket Refund Business Process Demo</p>
+        <p class="author">Portfolio Project by Igor Kudinov</p>
+
+        <div class="description">
+            <p>
+                Production-ready BPMN 2.0 workflow for automated airline ticket refund processing. 
+                Built with <strong>Camunda Platform 7</strong> and powered by <strong>OpenAI GPT-4o-mini</strong>, showcasing intelligent 
+                fare rule analysis through the External Task pattern.
+            </p>
+        </div>
+
+        <div class="features">
+            <h4><i class="fas fa-clipboard-list"></i> Key Features</h4>
+            <ul>
+                <li><i class="fas fa-check-circle"></i> Automated ticket refund workflow with BPMN 2.0</li>
+                <li><i class="fas fa-check-circle"></i> LLM-powered fare rule analysis using External Task pattern</li>
+                <li><i class="fas fa-check-circle"></i> Retry logic with error handling and boundary events</li>
+                <li><i class="fas fa-check-circle"></i> PostgreSQL database for process persistence</li>
+                <li><i class="fas fa-check-circle"></i> Custom Go-based history viewer for process monitoring</li>
+            </ul>
+        </div>
+
+        <div class="links">
+            <a href="#" id="view-diagram-btn" class="link-card">
+                <i class="fas fa-project-diagram"></i>
+                <div class="link-card-title">View BPMN Diagram</div>
+                <div class="link-card-subtitle">Interactive process flow visualization</div>
+            </a>
+
+            <a href="#" id="view-docs-btn" class="link-card">
+                <i class="fas fa-book-open"></i>
+                <div class="link-card-title">Documentation</div>
+                <div class="link-card-subtitle">Architecture, tests & technical details</div>
+            </a>
+
+            <a href="https://camunda.camunda-llm-demo.digitlock.systems" class="link-card" target="_blank" rel="noopener noreferrer">
+                <i class="fas fa-cogs"></i>
+                <div class="link-card-title">Camunda Cockpit</div>
+                <div class="link-card-subtitle">Monitor and manage process instances</div>
+            </a>
+
+            <a href="https://history.camunda-llm-demo.digitlock.systems" class="link-card" target="_blank" rel="noopener noreferrer">
+                <i class="fas fa-chart-bar"></i>
+                <div class="link-card-title">Process History</div>
+                <div class="link-card-subtitle">View execution timeline and analytics</div>
+            </a>
+        </div>
+
+        <div class="credentials">
+            <h4><i class="fas fa-lock"></i> Access Credentials</h4>
+            <p>To access Camunda Cockpit, please contact the project owner for credentials.</p>
+        </div>
+
+        <section class="tech-section">
+            <h3><i class="fas fa-folder-open"></i> Repository Structure</h3>
+            <div class="repo-list">
+                <p>
+                    <a href="https://github.com/DigitLock/camunda-llm-ticket-refund" target="_blank">Main Project</a>
+                    &mdash; BPMN workflows, LLM worker, deployment configs
+                </p>
+                <p>
+                    <a href="https://github.com/DigitLock/camunda-history-viewer" target="_blank">History Viewer</a>
+                    &mdash; Go-based process monitoring dashboard
+                </p>
+            </div>
+        </section>
+
+        <section class="tech-section">
+            <h3><i class="fas fa-cogs"></i> Tech Stack</h3>
+            <div class="tech-stack">
+                <span class="tech-badge">Camunda 7.21</span>
+                <span class="tech-badge">OpenAI GPT-4o-mini</span>
+                <span class="tech-badge">Go 1.21</span>
+                <span class="tech-badge">Python 3.11</span>
+                <span class="tech-badge">PostgreSQL</span>
+                <span class="tech-badge">Docker</span>
+                <span class="tech-badge">Nginx</span>
+            </div>
+        </section>
+
+        <footer class="footer">
+            <p>Built by Igor Kudinov (2025)</p>
+        </footer>
+    </div>
+
+<div id="bpmn-modal" class="modal">
+    <div class="modal-content">
+        <span class="modal-close">&times;</span>
+        <h2 style="margin-bottom: 15px; color: #333;">BPMN Process Diagram</h2>
+        <img src="/static/diagram.png" style="width: 100%; height: auto; border-radius: 8px;">
+    </div>
+</div>
+
+<div class="modal" id="docs-modal">
+    <div class="modal-content">
+        <button class="modal-close" onclick="closeModal('docs-modal')">&times;</button>
+        <div class="modal-title">
+            <i class="fas fa-book"></i>
+            <span>Documentation</span>
+        </div>
+        <div class="modal-body">
+            <p style="margin-bottom: 20px;">Comprehensive technical documentation hosted on Confluence</p>
+
+            <div class="docs-links">
+                <a href="https://igor-kudinov.atlassian.net/wiki/external/MmUzMDBiNmExNzI0NGFjMDlhNjI4NGQyM2E3OTZjZTI" target="_blank" class="doc-link-item">
+                    <div class="doc-icon"><i class="fas fa-file-alt"></i></div>
+                    <div class="doc-content">
+                        <div class="doc-title">Project Overview</div>
+                        <div class="doc-desc">Introduction, features, and business context</div>
+                    </div>
+                    <div class="doc-arrow"><i class="fas fa-external-link-alt"></i></div>
+                </a>
+
+                <a href="https://igor-kudinov.atlassian.net/wiki/external/OTE1MDczOWZmYmJlNGJmMTlmODNkZTc1ODE4YTMyZTU" target="_blank" class="doc-link-item">
+                    <div class="doc-icon"><i class="fas fa-sitemap"></i></div>
+                    <div class="doc-content">
+                        <div class="doc-title">Architecture Documentation</div>
+                        <div class="doc-desc">System design, components, and data flow</div>
+                    </div>
+                    <div class="doc-arrow"><i class="fas fa-external-link-alt"></i></div>
+                </a>
+
+                <a href="https://igor-kudinov.atlassian.net/wiki/external/NGYxYjYxY2Q4MWVkNDQ5ODljMWQ1NjE0MGM1NDBhZjE" target="_blank" class="doc-link-item">
+                    <div class="doc-icon"><i class="fas fa-check-circle"></i></div>
+                    <div class="doc-content">
+                        <div class="doc-title">Test Results & Scenarios</div>
+                        <div class="doc-desc">Detailed test documentation and coverage</div>
+                    </div>
+                    <div class="doc-arrow"><i class="fas fa-external-link-alt"></i></div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+// BPMN Modal
+const bpmnModal = document.getElementById('bpmn-modal');
+const bpmnTrigger = document.getElementById('view-diagram-btn');
+const bpmnClose = bpmnModal.querySelector('.modal-close');
+
+bpmnTrigger.onclick = function(e) {
+    e.preventDefault();
+    bpmnModal.classList.add('show');
+}
+
+bpmnClose.onclick = function() {
+    bpmnModal.classList.remove('show');
+}
+
+// Docs Modal
+const docsModal = document.getElementById('docs-modal');
+const docsTrigger = document.getElementById('view-docs-btn');
+const docsClose = docsModal.querySelector('.modal-close');
+
+docsTrigger.onclick = function(e) {
+    e.preventDefault();
+    docsModal.classList.add('show');
+}
+
+docsClose.onclick = function() {
+    docsModal.classList.remove('show');
+}
+
+// Close modals on background click
+document.addEventListener('click', function(e) {
+    if (e.target.classList.contains('modal')) {
+        e.target.classList.remove('show');
+    }
+});
+
+// Close modals on Escape key
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        bpmnModal.classList.remove('show');
+        docsModal.classList.remove('show');
+    }
+});
+</script>
+</body>
+</html>

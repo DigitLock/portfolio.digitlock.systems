@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='58' fill='%233c5ff8'/><text x='50' y='50' font-family='Arial, sans-serif' font-size='70' font-weight='bold' fill='white' text-anchor='middle' dominant-baseline='central'>I K</text></svg>">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Expense Tracker - Igor Kudinov Portfolio</title>
+    <meta name="description" content="Full-stack family finance management application with multi-currency support">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="css/project-page.css">
+</head>
+<body>
+    <div class="container">
+        <nav class="breadcrumbs">
+            <div class="breadcrumbs-left">
+                <a href="https://portfolio.digitlock.systems" class="back-btn">
+                    <i class="fas fa-arrow-left"></i>
+                    <span>Back to Portfolio</span>
+                </a>
+
+                <span class="breadcrumbs-separator"> -> </span>
+
+                <span class="breadcrumbs-current">Personal Expense Tracker</span>
+            </div>
+
+            <div class="status-badge">
+                <i class="fas fa-hammer"></i>
+                <span>In Active Development</span>
+            </div>
+        </nav>
+
+        <div class="title-section">
+            <div class="main-title">
+                <div class="title-icon">
+                    <i class="fas fa-wallet"></i>
+                </div>
+                <h1>Personal Expense Tracker</h1>
+            </div>
+
+            <p class="subtitle">Family Finance Management with Multi-Currency Support</p>
+            <p class="author">Personal Project by Igor Kudinov</p>
+
+            <p class="description">
+                Full-stack application for comprehensive tracking and analysis of family financial flows.
+                Built with modern Go backend and responsive Vue.js frontend, featuring real-time analytics,
+                multi-currency support (RSD/EUR), and intuitive family member management.
+            </p>
+        </div>
+
+        <div class="features">
+            <h4><i class="fas fa-clipboard-list"></i> Key Features</h4>
+            <ul>
+                <li><i class="fas fa-check-circle"></i> Multi-currency support with RSD base and EUR conversion</li>
+                <li><i class="fas fa-check-circle"></i> Real-time financial analytics and spending pattern analysis</li>
+                <li><i class="fas fa-check-circle"></i> Family member management with shared financial context</li>
+                <li><i class="fas fa-check-circle"></i> Flexible categorization system for expenses and income</li>
+                <li><i class="fas fa-check-circle"></i> Account management across cash, bank accounts, and savings</li>
+                <li><i class="fas fa-check-circle"></i> Responsive Vue.js interface optimized for mobile and desktop</li>
+            </ul>
+        </div>
+
+        <div class="links">
+            <a href="#" class="link-card" onclick="openModal('docs-modal'); return false;">
+                <i class="fas fa-book"></i>
+                <div class="link-card-title">Documentation</div>
+                <div class="link-card-subtitle">BRD, SRS & API specifications</div>
+            </a>
+
+            <a href="https://github.com/DigitLock/expense-tracker" class="link-card" target="_blank" rel="noopener noreferrer">
+                <i class="fab fa-github"></i>
+                <div class="link-card-title">GitHub Repository</div>
+                <div class="link-card-subtitle">View source code</div>
+            </a>
+
+            <a href="#" class="link-card" onclick="openModal('db-schema-modal'); return false;">
+                <i class="fas fa-database"></i>
+                <div class="link-card-title">Database Schema</div>
+                <div class="link-card-subtitle">View data model design overview</div>
+            </a>
+
+            <a href="#" class="link-card" onclick="openModal('demo-modal'); return false;">
+                <i class="fas fa-desktop"></i>
+                <div class="link-card-title">Live Demo</div>
+                <div class="link-card-subtitle">Try the application (coming soon)</div>
+            </a>
+        </div>
+
+        <div class="info-box">
+            <div class="info-box-title">
+                <i class="fas fa-info-circle"></i>
+                Project Status
+            </div>
+            <p>
+                This project is currently in active development as part of my Business Systems Analyst portfolio.
+                Backend implementation with Go and PostgreSQL is complete. Vue.js frontend development is in progress.
+            </p>
+        </div>
+
+        <section class="tech-section">
+            <h3><i class="fas fa-folder-open"></i> Repository Structure</h3>
+            <div class="repo-list">
+                <p>
+                    <a href="https://github.com/DigitLock/expense-tracker" target="_blank" rel="noopener noreferrer">
+                        expense-tracker
+                    </a>
+                    &mdash; monorepo with backend, frontend and documentation.
+                </p>
+                <p><strong>/backend</strong> &mdash; Go REST API service, domain logic, authentication, sqlc integration.</p>
+                <p><strong>/frontend</strong> &mdash; Vue.js 3 responsive SPA with views for transactions, accounts and analytics.</p>
+                <p><strong>/db</strong> &mdash; PostgreSQL schema, migrations and seed data for local development.</p>
+                <p><strong>/docs</strong> &mdash; BRD, SRS and API specifications describing business context and system behaviour.</p>
+            </div>
+        </section>
+
+
+        <section class="tech-section">
+            <h3><i class="fas fa-cogs"></i> Tech Stack</h3>
+            <div class="tech-stack">
+                <span class="tech-badge">Go Backend</span>
+                <span class="tech-badge">PostgreSQL</span>
+                <span class="tech-badge">Vue.js 3</span>
+                <span class="tech-badge">REST API</span>
+                <span class="tech-badge">JWT Auth</span>
+                <span class="tech-badge">Docker</span>
+                <span class="tech-badge">sqlc</span>
+                <span class="tech-badge">Multi-tenant</span>
+            </div>
+        </section>
+
+        <footer class="footer">
+            <p>Built by Igor Kudinov (2025)</p>
+        </footer>
+    </div>
+
+    <div class="modal" id="db-schema-modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('db-schema-modal')">&times;</button>
+            <div class="modal-title">
+                <i class="fas fa-database"></i>
+                <span>Database Schema Overview</span>
+            </div>
+            <div class="modal-body">
+                <p>
+                    The data model is designed around core finance entities:
+                </p>
+                <ul>
+                    <li><strong>accounts</strong> &mdash; cash, bank and savings accounts with currency metadata;</li>
+                    <li><strong>transactions</strong> &mdash; expenses and income linked to accounts and categories;</li>
+                    <li><strong>categories</strong> &mdash; flexible hierarchy for classifying financial flows;</li>
+                    <li><strong>family_members</strong> &mdash; context of who creates and uses each transaction;</li>
+                    <li><strong>exchange_rates</strong> &mdash; RSD/EUR conversion for analytics in base currency.</li>
+                </ul>
+                <p style="margin-top: 0.75rem;">
+                    Full ERD and SQL schema are available in the repository and in my internal documentation.<br>
+                    I can walk through them during an interview or portfolio review.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="docs-modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('docs-modal')">&times;</button>
+            <div class="modal-title">
+                <i class="fas fa-book"></i>
+                <span>Documentation</span>
+            </div>
+            <div class="modal-body">
+                <p style="margin-bottom: 20px;">Choose your preferred documentation format:</p>
+
+                <div class="docs-links">
+                    <div style="margin-bottom: 25px;">
+                        <h4 style="color: #333; margin-bottom: 12px; font-size: 15px;">
+                            <i class="fas fa-file-alt" style="color: #3c5ff8; margin-right: 8px;"></i>
+                            Business Requirements Document (BRD)
+                        </h4>
+                        <div style="display: flex; gap: 10px;">
+                            <a href="https://igor-kudinov.atlassian.net/wiki/external/ZTgxN2NjMmFiZGY2NDI0NzhhMDJkNDljNGRkMTQyNDU"
+                            target="_blank"
+                            class="doc-format-btn confluence">
+                                <i class="fab fa-confluence"></i>
+                                <span>View on Confluence</span>
+                            </a>
+                            <a href="https://github.com/DigitLock/expense-tracker/blob/main/Documentation/expense_tracker_brd.md"
+                            target="_blank"
+                            class="doc-format-btn github">
+                                <i class="fab fa-github"></i>
+                                <span>View on GitHub</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h4 style="color: #333; margin-bottom: 12px; font-size: 15px;">
+                            <i class="fas fa-clipboard-list" style="color: #3c5ff8; margin-right: 8px;"></i>
+                            Software Requirements Specification (SRS)
+                        </h4>
+                        <div style="display: flex; gap: 10px;">
+                            <a href="https://igor-kudinov.atlassian.net/wiki/external/NjA0YTRjMzBiMjQyNDIxNmE2NjdlOTA2NjcxNDk4MzE"
+                            target="_blank"
+                            class="doc-format-btn confluence">
+                                <i class="fab fa-confluence"></i>
+                                <span>View on Confluence</span>
+                            </a>
+                            <a href="https://github.com/DigitLock/expense-tracker/blob/main/Documentation/expense_tracker_srs_mvp.md"
+                            target="_blank"
+                            class="doc-format-btn github">
+                                <i class="fab fa-github"></i>
+                                <span>View on GitHub</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="demo-modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('demo-modal')">&times;</button>
+            <div class="modal-title">
+                <i class="fas fa-desktop"></i>
+                <span>Live Demo</span>
+            </div>
+            <div class="modal-body">
+                <p>
+                    The live demo environment is planned as the next milestone once the core Vue.js UI is ready.
+                    It will include:
+                </p>
+                <ul>
+                    <li>test tenant with sample family and accounts;</li>
+                    <li>preloaded transactions for typical monthly scenarios;</li>
+                    <li>analytics views with charts and breakdowns;</li>
+                    <li>ability to safely add your own test entries.</li>
+                </ul>
+                <p style="margin-top: 0.75rem;">
+                    For now, you can explore the implementation details in the GitHub repository.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openModal(id) {
+            const el = document.getElementById(id);
+            if (el) el.classList.add('show');
+        }
+
+        function closeModal(id) {
+            const el = document.getElementById(id);
+            if (el) el.classList.remove('show');
+        }
+
+        document.addEventListener('click', function (e) {
+            if (e.target.classList.contains('modal')) {
+                e.target.classList.remove('show');
+            }
+        });
+
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape') {
+                document.querySelectorAll('.modal.show').forEach(function (m) {
+                    m.classList.remove('show');
+                });
+            }
+        });
+    </script>
+</body>
+</html>

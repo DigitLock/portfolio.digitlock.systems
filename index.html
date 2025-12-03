@@ -7,371 +7,10 @@
     <title>Igor Kudinov - Senior Business Systems Analyst Portfolio</title>
     <meta name="description" content="Portfolio of Igor Kudinov - Accomplished Business Systems Analyst with experienced in banking, fintech and cryptocurrency with proven ability to quickly master new business domains">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        :root {
-            --primary-gradient: linear-gradient(35deg, #3c5ff8 0%, #67c9e7 100%);
-            --primary-color: #667eea;
-            --secondary-color: #764ba2;
-            --text-dark: #333;
-            --text-light: #666;
-            --bg-light: #f8f9fa;
-            --border-color: #eee;
-            --shadow: 0 8px 20px rgba(0,0,0,0.1);
-            --shadow-hover: 0 12px 30px rgba(0,0,0,0.15);
-        }
-        
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
-            background: var(--primary-gradient);
-            min-height: 100vh;
-            padding: 20px 15px;
-            line-height: 1.6;
-        }
-        
-        .container {
-            max-width: 1300px;
-            margin: 0 auto;
-        }
-        
-        .header {
-            background: white;
-            border-radius: 20px;
-            box-shadow: var(--shadow);
-            padding: 10px 10px;
-            text-align: center;
-            margin-bottom: 15px;
-            animation: fadeInDown 0.6s ease-out;
-        }
-        
-        h1 {
-            color: var(--text-dark);
-            margin-bottom: 2px;
-            font-size: 42px;
-            font-weight: 700;
-        }
-        
-        .subtitle {
-            color: var(--text-light);
-            font-size: 20px;
-            margin-bottom: 20px;
-            font-weight: 500;
-        }
-        
-        .tagline {
-            color: var(--text-light);
-            font-size: 16px;
-            max-width: 1000px;
-            margin: 5px auto 5px;
-            line-height: 1.5;
-        }
-        
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 25px;
-            margin-top: 10px;
-        }
-        
-        .social-links a {
-            color: var(--primary-color);
-            font-size: 28px;
-            transition: all 0.3s;
-            width: 50px;
-            height: 50px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            background: #f0f4ff;
-        }
-        
-        .social-links a:hover {
-            transform: translateY(-5px);
-            background: var(--primary-gradient);
-            color: white;
-        }
-        
-        .about {
-            background: white;
-            border-radius: 20px;
-            box-shadow: var(--shadow);
-            padding: 10px 50px;
-            margin-bottom: 15px;
-            animation: fadeIn 0.6s ease-out 0.2s backwards;
-        }
-        
-        .section-title {
-            color: var(--text-dark);
-            font-size: 32px;
-            margin-bottom: 10px;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-        
-        .section-title i {
-            color: var(--primary-color);
-        }
-        
-        .about-text {
-            color: var(--text-light);
-            font-size: 16px;
-            line-height: 1.5;
-            margin-bottom: 15px;
-        }
-        
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 10px;
-            margin-top: 15px;
-        }
-        
-        .skill-category {
-            background: var(--bg-light);
-            border-radius: 12px;
-            padding: 18px;
-            transition: all 0.3s;
-        }
-        
-        .skill-category:hover {
-            transform: translateY(-3px);
-            box-shadow: var(--shadow);
-        }
-        
-        .skill-category h4 {
-            color: var(--text-dark);
-            margin-bottom: 12px;
-            font-size: 17px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .skill-category h4 i {
-            color: var(--primary-color);
-        }
-        
-        .skill-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 6px;
-            row-gap: 6px;
-        }
-        
-        .skill-tag {
-            background: white;
-            color: var(--text-light);
-            padding: 5px 10px;
-            border-radius: 6px;
-            font-size: 12.5px;
-            border: 1px solid var(--border-color);
-            white-space: nowrap;
-        }
-        
-        .projects {
-            animation: fadeIn 0.6s ease-out 0.4s backwards;
-        }
-        
-        .projects-header {
-            background: white;
-            border-radius: 20px;
-            box-shadow: var(--shadow);
-            padding: 5px 10px;
-            margin-bottom: 5px;
-            text-align: center;
-        }
-        
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
-        }
-        
-        .project-card {
-            background: white;
-            border-radius: 20px;
-            padding: 10px 25px;
-            box-shadow: var(--shadow);
-            transition: all 0.3s;
-            text-decoration: none;
-            display: block;
-            border: 3px solid transparent;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .project-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 5px;
-            background: var(--primary-gradient);
-            transform: scaleX(0);
-            transition: transform 0.3s;
-        }
-        
-        .project-card:hover::before {
-            transform: scaleX(1);
-        }
-        
-        .project-card:hover {
-            transform: translateY(-8px);
-            box-shadow: var(--shadow-hover);
-            border-color: var(--primary-color);
-        }
-        
-        .project-card.coming-soon {
-            opacity: 0.6;
-            cursor: not-allowed;
-        }
-        
-        .project-card.coming-soon:hover {
-            transform: none;
-            border-color: transparent;
-        }
-        
-        .project-icon {
-            width: 60px;
-            height: 60px;
-            background: var(--primary-gradient);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 28px;
-            margin-bottom: 20px;
-        }
-        
-        .project-title {
-            color: var(--text-dark);
-            font-size: 24px;
-            font-weight: 700;
-            margin-bottom: 15px;
-        }
-        
-        .project-desc {
-            color: var(--text-light);
-            font-size: 15px;
-            line-height: 1.7;
-            margin-bottom: 20px;
-        }
-        
-        .project-tech {
-            display: flex;
-            gap: 8px;
-            flex-wrap: wrap;
-            margin-bottom: 20px;
-        }
-        
-        .tech-badge {
-            background: #e3f2fd;
-            color: #1976d2;
-            padding: 6px 12px;
-            border-radius: 6px;
-            font-size: 13px;
-            font-weight: 500;
-        }
-        
-        .project-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            color: var(--primary-color);
-            font-weight: 600;
-            font-size: 14px;
-            text-decoration: none;
-        }
-        
-        .project-link i {
-            transition: transform 0.3s;
-        }
-        
-        .project-card:hover .project-link i {
-            transform: translateX(5px);
-        }
-        
-        .footer {
-            background: white;
-            border-radius: 20px;
-            box-shadow: var(--shadow);
-            padding: 40px;
-            margin-top: 30px;
-            text-align: center;
-            animation: fadeIn 0.6s ease-out 0.6s backwards;
-        }
-        
-        .footer p {
-            color: var(--text-light);
-            font-size: 14px;
-        }
-        
-        @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        @media (max-width: 768px) {
-            body {
-                padding: 20px 10px;
-            }
-            
-            .header, .about, .projects-header, .footer {
-                padding: 30px 25px;
-            }
-            
-            .project-card {
-                padding: 25px;
-            }
-            
-            h1 {
-                font-size: 32px;
-            }
-            
-            .section-title {
-                font-size: 26px;
-            }
-            
-            .projects-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .skills-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
     <div class="container">
-        <!-- Header Section -->
         <header class="header">
             <h1>Igor Kudinov</h1>
             <p class="subtitle">Business Systems Analyst</p>
@@ -380,7 +19,7 @@
                 <br>
                 Specializing in API documentation, BPMN automation, compliance frameworks and system migrations.
             </p>
-            
+
             <div class="social-links">
                 <a href="https://github.com/DigitLock" target="_blank" title="GitHub" aria-label="GitHub Profile">
                     <i class="fab fa-github"></i>
@@ -390,8 +29,7 @@
                 </a>
             </div>
         </header>
-        
-        <!-- About Section -->
+
         <section class="about">
             <h2 class="section-title">
                 <i class="fas fa-user-circle"></i>
@@ -403,7 +41,7 @@
             technical teams and delivering initiatives within allocated deadlines. Skilled at launching, integrating, maintaining
             and improving new systems to meet client needs.
             </p>
-            
+
             <div class="skills-grid">
                 <div class="skill-category">
                     <h4><i class="fas fa-code"></i> Technical Skills</h4>
@@ -422,7 +60,7 @@
                         <span class="skill-tag">Docker</span>
                     </div>
                 </div>
-                
+
                 <div class="skill-category">
                     <h4><i class="fas fa-chart-line"></i> Business Analysis</h4>
                     <div class="skill-tags">
@@ -435,7 +73,7 @@
                         <span class="skill-tag">Gap Analysis</span>
                     </div>
                 </div>
-                
+
                 <div class="skill-category">
                     <h4><i class="fas fa-shield-alt"></i> Domain Expertise</h4>
                     <div class="skill-tags">
@@ -450,8 +88,7 @@
                 </div>
             </div>
         </section>
-        
-        <!-- Projects Section -->
+
         <section class="projects">
             <div class="projects-header">
                 <h2 class="section-title" style="justify-content: center;">
@@ -459,10 +96,9 @@
                     Featured Projects
                 </h2>
             </div>
-            
+
             <div class="projects-grid">
-                <!-- Expense Tracker - Coming Soon -->
-                <div class="project-card coming-soon">
+                <a href="https://expense-tracker.digitlock.systems" class="project-card" target="_blank">
                     <div class="project-icon">
                         <i class="fas fa-chart-pie"></i>
                     </div>
@@ -478,12 +114,11 @@
                         <span class="tech-badge">Vue.js</span>
                         <span class="tech-badge">Docker</span>
                     </div>
-                    <span class="project-link" style="color: #999;">
-                        Coming Soon <i class="fas fa-clock"></i>
+                    <span class="project-link">
+                        View Project <i class="fas fa-arrow-right"></i>
                     </span>
-                </div>
+                </a>
 
-                <!-- Camunda LLM Project -->
                 <a href="https://camunda-llm-demo.digitlock.systems" class="project-card" target="_blank">
                     <div class="project-icon">
                         <i class="fas fa-robot"></i>
@@ -506,8 +141,7 @@
                         View Live Demo <i class="fas fa-arrow-right"></i>
                     </span>
                 </a>
-                
-                <!-- More Projects Placeholder -->
+
                 <div class="project-card coming-soon">
                     <div class="project-icon">
                         <i class="fas fa-ellipsis-h"></i>
@@ -528,10 +162,9 @@
                 </div>
             </div>
         </section>
-        
-        <!-- Footer -->
+
         <footer class="footer">
-            <p>© 2025 Igor Kudinov. All rights reserved.</p>
+            <p>&copy; 2025 Igor Kudinov. All rights reserved.</p>
             <p style="margin-top: 10px; font-size: 13px;">
                 Built with HTML, CSS and hosted on Cloudflare Pages
             </p>
