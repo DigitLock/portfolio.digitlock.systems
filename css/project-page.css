@@ -363,6 +363,10 @@ h1 {
     position: relative;
 }
 
+.modal-content.wide {
+    max-width: 1200px;
+}
+
 .modal-close {
     position: absolute;
     top: 12px;
