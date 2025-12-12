@@ -192,10 +192,12 @@ h1 {
     box-shadow: var(--shadow);
     transition: all 0.3s;
     text-decoration: none;
-    display: block;
+    display: flex;
+    flex-direction: column;
     border: 3px solid transparent;
     position: relative;
     overflow: hidden;
+    min-height: 400px;
 }
 
 .project-card::before {
@@ -279,6 +281,7 @@ h1 {
     align-items: center;
     gap: 8px;
     transition: gap 0.3s;
+    margin-top: auto;
 }
 
 .project-card:hover .project-link {
@@ -350,4 +353,42 @@ h1 {
     .skills-grid {
         grid-template-columns: 1fr;
     }
+}
+
+.project-card {
+    position: relative; /* важно для позиционирования бейджа */
+}
+
+.demo-badge {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+    color: white;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    box-shadow: 0 2px 8px rgba(34, 197, 94, 0.3);
+    z-index: 10;
+    text-decoration: none; /* убираем подчеркивание */
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.demo-badge:hover {
+    transform: scale(1.08);
+    box-shadow: 0 4px 15px rgba(34, 197, 94, 0.5);
+    background: linear-gradient(135deg, #16a34a 0%, #15803d 100%);
+}
+
+.demo-badge:active {
+    transform: scale(1.02);
+}
+
+.demo-badge i {
+    font-size: 0.7rem;
 }
