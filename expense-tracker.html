@@ -43,27 +43,33 @@
             <p class="description">
                 Full-stack application for comprehensive tracking and analysis of family financial flows.
                 Built with modern Go backend and responsive Vue.js frontend, featuring real-time analytics,
-                multi-currency support (RSD/EUR), and intuitive family member management.
+                multi-currency support (RSD/EUR), gRPC API for mobile integration, and a Flutter mobile client.
             </p>
         </div>
 
         <div class="features">
             <h4><i class="fas fa-clipboard-list"></i> Key Features</h4>
-            <ul>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0 24px;">
+            <ul style="margin: 0; padding: 0;">
                 <li><i class="fas fa-check-circle"></i> Multi-currency support with RSD base and EUR conversion</li>
                 <li><i class="fas fa-check-circle"></i> Real-time financial analytics and spending pattern analysis</li>
                 <li><i class="fas fa-check-circle"></i> Family member management with shared financial context</li>
                 <li><i class="fas fa-check-circle"></i> Flexible categorization system for expenses and income</li>
+            </ul>
+            <ul style="margin: 0; padding: 0;">
                 <li><i class="fas fa-check-circle"></i> Account management across cash, bank accounts, and savings</li>
+                <li><i class="fas fa-check-circle"></i> Dual-protocol API: REST for web, gRPC for mobile client</li>
+                <li><i class="fas fa-check-circle"></i> Flutter mobile client communicating via gRPC (read-only v0.4.0)</li>
                 <li><i class="fas fa-check-circle"></i> Responsive Vue.js interface optimized for mobile and desktop</li>
             </ul>
+            </div>
         </div>
 
         <div class="links">
             <a href="#" class="link-card" onclick="openModal('docs-modal'); return false;">
                 <i class="fas fa-book"></i>
                 <div class="link-card-title">Documentation</div>
-                <div class="link-card-subtitle">BRD, SRS & API specifications</div>
+                <div class="link-card-subtitle">BRD, SRS, TDD & Functional Specs</div>
             </a>
 
             <a href="https://github.com/DigitLock/expense-tracker" class="link-card" target="_blank" rel="noopener noreferrer">
@@ -78,38 +84,41 @@
                 <div class="link-card-subtitle">View data model design overview</div>
             </a>
 
-            <a href="#" class="link-card" onclick="openModal('demo-modal'); return false;">
-                <i class="fas fa-desktop"></i>
-                <div class="link-card-title">Live Demo</div>
-                <div class="link-card-subtitle">Try the application (coming soon)</div>
+            <a href="https://demo-expensetracker.digitlock.systems/" class="link-card" target="_blank" rel="noopener noreferrer">
+            <i class="fas fa-desktop"></i>
+            <div class="link-card-title">Live Demo</div>
+            <div class="link-card-subtitle">Try the application</div>
             </a>
         </div>
 
         <div class="info-box">
             <div class="info-box-title">
-                <i class="fas fa-rocket"></i>
-                Project Status
+            <i class="fas fa-rocket"></i>
+            Project Status
             </div>
             <p>
-                <strong>Demo is live!</strong> Full-stack expense tracker with Go backend, Vue.js frontend, and PostgreSQL database. 
-                <a href="https://demo-expensetracker.digitlock.systems/" target="_blank" class="demo-link">Try the demo</a> 
-                to explore all features including accounts, categories, transactions and financial reports.
+            <strong>Demo is live!</strong> Full-stack expense tracker with Go backend, Vue.js frontend, PostgreSQL database,
+            and gRPC API for mobile integration.
+            <a href="https://demo-expensetracker.digitlock.systems/" target="_blank" class="demo-link">Try the demo</a>
+            to explore all features including accounts, categories, transactions and financial reports.
+            Flutter mobile client (v0.4.0) is in active development, connecting via gRPC at <code>46.224.29.194:50051</code>.
             </p>
         </div>
 
         <section class="tech-section">
             <h3><i class="fas fa-folder-open"></i> Repository Structure</h3>
             <div class="repo-list">
-                <p>
-                    <a href="https://github.com/DigitLock/expense-tracker" target="_blank" rel="noopener noreferrer">
-                        expense-tracker
-                    </a>
-                    &mdash; monorepo with backend, frontend and documentation.
-                </p>
-                <p><strong>/backend</strong> &mdash; Go REST API service, domain logic, authentication, sqlc integration.</p>
-                <p><strong>/frontend</strong> &mdash; Vue.js 3 responsive SPA with views for transactions, accounts and analytics.</p>
-                <p><strong>/db</strong> &mdash; PostgreSQL schema, migrations and seed data for local development.</p>
-                <p><strong>/docs</strong> &mdash; BRD, SRS and API specifications describing business context and system behaviour.</p>
+            <p>
+                <a href="https://github.com/DigitLock/expense-tracker" target="_blank" rel="noopener noreferrer">
+                expense-tracker
+                </a>
+                &mdash; monorepo with backend, frontend, mobile and documentation.
+            </p>
+            <p><strong>/backend</strong> &mdash; Go REST API service, domain logic, authentication, sqlc integration.</p>
+            <p><strong>/frontend</strong> &mdash; Vue.js 3 responsive SPA with views for transactions, accounts and analytics.</p>
+            <p><strong>/db</strong> &mdash; PostgreSQL schema, migrations and seed data for local development.</p>
+            <p><strong>/proto</strong> &mdash; protobuf definitions for gRPC services (AccountService, TransactionService).</p>
+            <p><strong>/Documentation</strong> &mdash; BRD, SRS, TDD and Functional Specifications describing business context and system behaviour.</p>
             </div>
         </section>
 
@@ -117,22 +126,27 @@
         <section class="tech-section">
             <h3><i class="fas fa-cogs"></i> Tech Stack</h3>
             <div class="tech-stack">
-                <span class="tech-badge">Go Backend</span>
-                <span class="tech-badge">PostgreSQL</span>
-                <span class="tech-badge">Vue.js 3</span>
-                <span class="tech-badge">REST API</span>
-                <span class="tech-badge">JWT Auth</span>
-                <span class="tech-badge">Docker</span>
-                <span class="tech-badge">sqlc</span>
-                <span class="tech-badge">Multi-tenant</span>
+            <span class="tech-badge">Go Backend</span>
+            <span class="tech-badge">PostgreSQL</span>
+            <span class="tech-badge">Vue.js 3</span>
+            <span class="tech-badge">REST API</span>
+            <span class="tech-badge">gRPC</span>
+            <span class="tech-badge">protobuf</span>
+            <span class="tech-badge">Flutter</span>
+            <span class="tech-badge">JWT Auth</span>
+            <span class="tech-badge">Docker</span>
+            <span class="tech-badge">sqlc</span>
+            <span class="tech-badge">Chi Router</span>
+            <span class="tech-badge">Multi-tenant</span>
             </div>
         </section>
 
         <footer class="footer">
-            <p>Built by Igor Kudinov (2025)</p>
+            <p>Built by Igor Kudinov (2026)</p>
         </footer>
     </div>
 
+    <!-- DB Schema Modal -->
     <div class="modal" id="db-schema-modal">
         <div class="modal-content">
             <button class="modal-close" onclick="closeModal('db-schema-modal')">&times;</button>
@@ -159,63 +173,108 @@
         </div>
     </div>
 
+    <!-- Docs Modal -->
     <div class="modal" id="docs-modal">
-        <div class="modal-content">
-            <button class="modal-close" onclick="closeModal('docs-modal')">&times;</button>
-            <div class="modal-title">
-                <i class="fas fa-book"></i>
-                <span>Documentation</span>
-            </div>
-            <div class="modal-body">
-                <p style="margin-bottom: 20px;">Choose your preferred documentation format:</p>
+    <div class="modal-content">
+        <button class="modal-close" onclick="closeModal('docs-modal')">&times;</button>
+        <div class="modal-title">
+        <i class="fas fa-book"></i>
+        <span>Documentation</span>
+        </div>
+        <div class="modal-body">
+        <p style="margin-bottom: 20px;">Choose your preferred documentation format:</p>
+        <div class="docs-links">
 
-                <div class="docs-links">
-                    <div style="margin-bottom: 25px;">
-                        <h4 style="color: #333; margin-bottom: 12px; font-size: 15px;">
-                            <i class="fas fa-file-alt" style="color: #3c5ff8; margin-right: 8px;"></i>
-                            Business Requirements Document (BRD)
-                        </h4>
-                        <div style="display: flex; gap: 10px;">
-                            <a href="https://igor-kudinov.atlassian.net/wiki/external/ZTgxN2NjMmFiZGY2NDI0NzhhMDJkNDljNGRkMTQyNDU"
-                            target="_blank"
-                            class="doc-format-btn confluence">
-                                <i class="fab fa-confluence"></i>
-                                <span>View on Confluence</span>
-                            </a>
-                            <a href="https://github.com/DigitLock/expense-tracker/blob/main/Documentation/expense_tracker_brd.md"
-                            target="_blank"
-                            class="doc-format-btn github">
-                                <i class="fab fa-github"></i>
-                                <span>View on GitHub</span>
-                            </a>
-                        </div>
-                    </div>
-
-                    <div>
-                        <h4 style="color: #333; margin-bottom: 12px; font-size: 15px;">
-                            <i class="fas fa-clipboard-list" style="color: #3c5ff8; margin-right: 8px;"></i>
-                            Software Requirements Specification (SRS)
-                        </h4>
-                        <div style="display: flex; gap: 10px;">
-                            <a href="https://igor-kudinov.atlassian.net/wiki/external/NjA0YTRjMzBiMjQyNDIxNmE2NjdlOTA2NjcxNDk4MzE"
-                            target="_blank"
-                            class="doc-format-btn confluence">
-                                <i class="fab fa-confluence"></i>
-                                <span>View on Confluence</span>
-                            </a>
-                            <a href="https://github.com/DigitLock/expense-tracker/blob/main/Documentation/expense_tracker_srs_mvp.md"
-                            target="_blank"
-                            class="doc-format-btn github">
-                                <i class="fab fa-github"></i>
-                                <span>View on GitHub</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
+            <div style="margin-bottom: 25px;">
+            <h4 style="color: #333; margin-bottom: 12px; font-size: 15px;">
+                <i class="fas fa-file-alt" style="color: #3c5ff8; margin-right: 8px;"></i>
+                Business Requirements Document (BRD)
+            </h4>
+            <div style="display: flex; gap: 10px;">
+                <a href="https://igor-kudinov.atlassian.net/wiki/external/ZTgxN2NjMmFiZGY2NDI0NzhhMDJkNDljNGRkMTQyNDU"
+                target="_blank"
+                class="doc-format-btn confluence">
+                <i class="fab fa-confluence"></i>
+                <span>View on Confluence</span>
+                </a>
+                <a href="https://github.com/DigitLock/expense-tracker/blob/main/Documentation/expense_tracker_brd.md"
+                target="_blank"
+                class="doc-format-btn github">
+                <i class="fab fa-github"></i>
+                <span>View on GitHub</span>
+                </a>
             </div>
+            </div>
+
+            <div style="margin-bottom: 25px;">
+            <h4 style="color: #333; margin-bottom: 12px; font-size: 15px;">
+                <i class="fas fa-clipboard-list" style="color: #3c5ff8; margin-right: 8px;"></i>
+                Software Requirements Specification (SRS)
+            </h4>
+            <div style="display: flex; gap: 10px;">
+                <a href="https://igor-kudinov.atlassian.net/wiki/external/NjA0YTRjMzBiMjQyNDIxNmE2NjdlOTA2NjcxNDk4MzE"
+                target="_blank"
+                class="doc-format-btn confluence">
+                <i class="fab fa-confluence"></i>
+                <span>View on Confluence</span>
+                </a>
+                <a href="https://github.com/DigitLock/expense-tracker/blob/main/Documentation/expense_tracker_srs_mvp.md"
+                target="_blank"
+                class="doc-format-btn github">
+                <i class="fab fa-github"></i>
+                <span>View on GitHub</span>
+                </a>
+            </div>
+            </div>
+
+            <div style="margin-bottom: 25px;">
+            <h4 style="color: #333; margin-bottom: 12px; font-size: 15px;">
+                <i class="fas fa-drafting-compass" style="color: #3c5ff8; margin-right: 8px;"></i>
+                Technical Design Document — gRPC Integration (TDD)
+            </h4>
+            <div style="display: flex; gap: 10px;">
+                <a href="https://igor-kudinov.atlassian.net/wiki/external/N2ViMjY3ZDliOTMyNDljYzkwNjY1ZDNhNWZiODBkYWU"
+                target="_blank"
+                class="doc-format-btn confluence">
+                <i class="fab fa-confluence"></i>
+                <span>View on Confluence</span>
+                </a>
+                <a href="https://github.com/DigitLock/expense-tracker/blob/main/Documentation/expense_tracker_tdd_grpc_integration.md"
+                target="_blank"
+                class="doc-format-btn github">
+                <i class="fab fa-github"></i>
+                <span>View on GitHub</span>
+                </a>
+            </div>
+            </div>
+
+            <div>
+            <h4 style="color: #333; margin-bottom: 12px; font-size: 15px;">
+                <i class="fas fa-mobile-alt" style="color: #3c5ff8; margin-right: 8px;"></i>
+                Functional Specification — Flutter Mobile Client (FS)
+            </h4>
+            <div style="display: flex; gap: 10px;">
+                <a href="https://igor-kudinov.atlassian.net/wiki/external/NzUzYmQxNmRjNWUzNDNjZmI2YjUyYzRkNWUxMjQzOTM"
+                target="_blank"
+                class="doc-format-btn confluence">
+                <i class="fab fa-confluence"></i>
+                <span>View on Confluence</span>
+                </a>
+                <a href="https://github.com/DigitLock/expense-tracker/blob/main/Documentation/expense_tracker_fs_flutter_mobile_client.md"
+                target="_blank"
+                class="doc-format-btn github">
+                <i class="fab fa-github"></i>
+                <span>View on GitHub</span>
+                </a>
+            </div>
+            </div>
+
+        </div>
         </div>
     </div>
+    </div>
 
+    <!--
     <div class="modal" id="demo-modal">
         <div class="modal-content">
             <button class="modal-close" onclick="closeModal('demo-modal')">&times;</button>
@@ -240,6 +299,7 @@
             </div>
         </div>
     </div>
+    -->
 
     <script>
         function openModal(id) {
