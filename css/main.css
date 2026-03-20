@@ -303,6 +303,55 @@ h1 {
     font-size: 14px;
 }
 
+.support-links {
+    margin-bottom: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.support-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+.support-btn:hover {
+    transform: translateY(-3px);
+}
+
+.kofi-btn {
+    background: #FF5E5B;
+    color: white;
+    box-shadow: 0 4px 12px rgba(255, 94, 91, 0.3);
+}
+
+.kofi-btn:hover {
+    box-shadow: 0 6px 20px rgba(255, 94, 91, 0.45);
+}
+
+.sponsor-btn {
+    background: #bf3989;
+    color: white;
+    box-shadow: 0 4px 12px rgba(191, 57, 137, 0.3);
+}
+
+.sponsor-btn:hover {
+    box-shadow: 0 6px 20px rgba(191, 57, 137, 0.45);
+}
+
+.sponsor-btn i {
+    font-size: 16px;
+}
+
 @keyframes fadeInDown {
     from {
         opacity: 0;
