@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='58' fill='%233c5ff8'/><text x='50' y='50' font-family='Arial, sans-serif' font-size='70' font-weight='bold' fill='white' text-anchor='middle' dominant-baseline='central'>I K</text></svg>">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currency Rate Service - Igor Kudinov Portfolio</title>
+    <meta name="description" content="Autonomous gRPC microservice for live and historical currency exchange rates — part of the Expense Tracker ecosystem">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="css/project-page.css">
+</head>
+<body>
+    <div class="container">
+        <nav class="breadcrumbs">
+            <div class="breadcrumbs-left">
+                <a href="https://portfolio.digitlock.systems" class="back-btn">
+                    <i class="fas fa-arrow-left"></i>
+                    <span>Back to Portfolio</span>
+                </a>
+                <span class="breadcrumbs-separator"> -> </span>
+                <span class="breadcrumbs-current">Currency Rate Service</span>
+            </div>
+            <span class="status-badge" style="background: #f0f4ff; color: #3c5ff8; border: 1px solid #c7d2fe;">
+                <i class="fas fa-code-branch"></i>
+                <span>In Development</span>
+            </span>
+        </nav>
+
+        <div class="title-section">
+            <div class="main-title">
+                <div class="title-icon">
+                    <i class="fas fa-exchange-alt"></i>
+                </div>
+                <h1>Currency Rate Service</h1>
+            </div>
+            <p class="subtitle">Autonomous gRPC Microservice for Exchange Rate Management</p>
+            <p class="author">Personal Project by Igor Kudinov</p>
+            <p class="description">
+                Standalone Go microservice that autonomously collects, stores, and serves live and historical
+                currency exchange rates to applications within the Expense Tracker ecosystem via gRPC.
+                Addresses multi-currency visibility requirements and establishes the first inter-service
+                communication pattern in the evolving microservice architecture.
+            </p>
+        </div>
+
+        <div class="features">
+            <h4><i class="fas fa-clipboard-list"></i> Key Features</h4>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0 24px;">
+            <ul style="margin: 0; padding: 0;">
+                <li><i class="fas fa-check-circle"></i> Autonomous polling engine with configurable intervals per currency pair</li>
+                <li><i class="fas fa-check-circle"></i> Primary + backup provider failover with staleness flagging</li>
+                <li><i class="fas fa-check-circle"></i> gRPC API: GetRate, GetRates (batch), ListSupportedPairs</li>
+                <li><i class="fas fa-check-circle"></i> Historical rate accumulation from day one</li>
+            </ul>
+            <ul style="margin: 0; padding: 0;">
+                <li><i class="fas fa-check-circle"></i> Database-driven configuration — no restart required for pair/provider changes</li>
+                <li><i class="fas fa-check-circle"></i> Extensible provider adapter architecture (config-driven for standard REST APIs)</li>
+                <li><i class="fas fa-check-circle"></i> Per-provider health tracking and structured observability</li>
+                <li><i class="fas fa-check-circle"></i> Unauthenticated API — public data, internal infrastructure</li>
+            </ul>
+            </div>
+        </div>
+
+        <div class="links">
+            <a href="#" class="link-card" onclick="openModal('docs-modal'); return false;">
+                <i class="fas fa-book"></i>
+                <div class="link-card-title">Documentation</div>
+                <div class="link-card-subtitle">BRD & SRS</div>
+            </a>
+
+            <a href="https://github.com/DigitLock/currency-rate-service" class="link-card" target="_blank" rel="noopener noreferrer">
+                <i class="fab fa-github"></i>
+                <div class="link-card-title">GitHub Repository</div>
+                <div class="link-card-subtitle">View source code</div>
+            </a>
+
+            <a href="#" class="link-card" onclick="openModal('arch-modal'); return false;">
+                <i class="fas fa-project-diagram"></i>
+                <div class="link-card-title">Architecture</div>
+                <div class="link-card-subtitle">Service design overview</div>
+            </a>
+
+            <a href="#" class="link-card" onclick="openModal('context-modal'); return false;">
+                <i class="fas fa-sitemap"></i>
+                <div class="link-card-title">Ecosystem Context</div>
+                <div class="link-card-subtitle">Role in the larger system</div>
+            </a>
+        </div>
+
+        <div class="info-box">
+            <div class="info-box-title">
+                <i class="fas fa-rocket"></i>
+                Project Status
+            </div>
+            <p>
+                <strong>In active development.</strong> Business requirements (BRD) and system specification (SRS) are complete.
+                Repository is initialised at
+                <a href="https://github.com/DigitLock/currency-rate-service" target="_blank" class="demo-link">github.com/DigitLock/currency-rate-service</a>.
+                Go project setup and core implementation are the immediate next steps.
+                Target: three fiat pairs (RSD↔EUR, RSD↔USD, EUR↔USD) served via gRPC to the Expense Tracker Backend.
+            </p>
+        </div>
+
+        <section class="tech-section">
+            <h3><i class="fas fa-folder-open"></i> Repository Structure</h3>
+            <div class="repo-list">
+                <p>
+                    <a href="https://github.com/DigitLock/currency-rate-service" target="_blank" rel="noopener noreferrer">
+                        currency-rate-service
+                    </a>
+                    &mdash; standalone microservice repository with independent deployment lifecycle.
+                </p>
+                <p><strong>/internal/polling</strong> &mdash; scheduler, adapter registry, provider adapters, health tracker.</p>
+                <p><strong>/internal/grpc</strong> &mdash; gRPC server, proto-generated code, service handlers.</p>
+                <p><strong>/internal/repository</strong> &mdash; sqlc-generated type-safe database access layer.</p>
+                <p><strong>/db</strong> &mdash; PostgreSQL schema, migrations for rate storage and database-driven configuration.</p>
+                <p><strong>/proto</strong> &mdash; protobuf definitions for CurrencyRateService (GetRate, GetRates, ListSupportedPairs).</p>
+                <p><strong>/Documentation</strong> &mdash; BRD and SRS describing business context and technical specification.</p>
+            </div>
+        </section>
+
+        <section class="tech-section">
+            <h3><i class="fas fa-cogs"></i> Tech Stack</h3>
+            <div class="tech-stack">
+                <span class="tech-badge">Go</span>
+                <span class="tech-badge">gRPC</span>
+                <span class="tech-badge">protobuf</span>
+                <span class="tech-badge">PostgreSQL</span>
+                <span class="tech-badge">sqlc</span>
+                <span class="tech-badge">pgx/v5</span>
+                <span class="tech-badge">Docker</span>
+                <span class="tech-badge">buf / protoc</span>
+                <span class="tech-badge">HTTP/REST clients</span>
+            </div>
+        </section>
+
+        <footer class="footer">
+            <div class="support-links">
+                <a href="https://ko-fi.com/digitlock" target="_blank" class="support-btn kofi-btn">
+                    <img src="https://storage.ko-fi.com/cdn/brandasset/v2/kofi_symbol.png" alt="Ko-fi" width="20" height="20">
+                    Support Me on Ko-fi
+                </a>
+                <a href="https://github.com/sponsors/DigitLock" target="_blank" class="support-btn sponsor-btn">
+                    <i class="fas fa-heart"></i>
+                    Sponsor Me on GitHub
+                </a>
+            </div>
+            <p>Built by Igor Kudinov (2026)</p>
+        </footer>
+    </div>
+
+    <!-- Docs Modal -->
+    <div class="modal" id="docs-modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('docs-modal')">&times;</button>
+            <div class="modal-title">
+                <i class="fas fa-book"></i>
+                <span>Documentation</span>
+            </div>
+            <div class="modal-body">
+                <p style="margin-bottom: 20px;">Choose your preferred documentation format:</p>
+                <div class="docs-links">
+
+                    <div style="margin-bottom: 25px;">
+                        <h4 style="color: #333; margin-bottom: 12px; font-size: 15px;">
+                            <i class="fas fa-file-alt" style="color: #3c5ff8; margin-right: 8px;"></i>
+                            Business Requirements Document (BRD)
+                        </h4>
+                        <div style="display: flex; gap: 10px;">
+                            <a href="https://igor-kudinov.atlassian.net/wiki/external/ODkzNmY4OGNlNjcxNDAzNzg3YjMwMTJmNzRhOTJhZmM"
+                               target="_blank" class="doc-format-btn confluence">
+                                <i class="fab fa-confluence"></i>
+                                <span>View on Confluence</span>
+                            </a>
+                            <a href="https://github.com/DigitLock/currency-rate-service/blob/main/Documentation/currency_rate_service_brd.md"
+                               target="_blank" class="doc-format-btn github">
+                                <i class="fab fa-github"></i>
+                                <span>View on GitHub</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h4 style="color: #333; margin-bottom: 12px; font-size: 15px;">
+                            <i class="fas fa-clipboard-list" style="color: #3c5ff8; margin-right: 8px;"></i>
+                            System Requirements Specification (SRS)
+                        </h4>
+                        <div style="display: flex; gap: 10px;">
+                            <a href="https://igor-kudinov.atlassian.net/wiki/external/N2JhYWIxMjM1NjhjNDJmZmIwNmMwMDYxNmRiMTZlOTU"
+                               target="_blank" class="doc-format-btn confluence">
+                                <i class="fab fa-confluence"></i>
+                                <span>View on Confluence</span>
+                            </a>
+                            <a href="https://github.com/DigitLock/currency-rate-service/blob/main/Documentation/currency_rate_service_srs.md"
+                               target="_blank" class="doc-format-btn github">
+                                <i class="fab fa-github"></i>
+                                <span>View on GitHub</span>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Architecture Modal -->
+    <div class="modal" id="arch-modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('arch-modal')">&times;</button>
+            <div class="modal-title">
+                <i class="fas fa-project-diagram"></i>
+                <span>Architecture Overview</span>
+            </div>
+            <div class="modal-body">
+                <p>The service is composed of three internal subsystems:</p>
+                <ul>
+                    <li><strong>Polling Subsystem</strong> &mdash; scheduler triggers rate collection per configured interval; adapter registry dispatches to generic JSON adapters (config-driven) or custom adapters (code); health tracker records per-provider status;</li>
+                    <li><strong>Data Layer</strong> &mdash; all business configuration (pairs, providers, intervals) lives in PostgreSQL; sqlc/pgx provide type-safe access; config loader reads pairs and providers at startup and on reload;</li>
+                    <li><strong>API Layer</strong> &mdash; gRPC server exposes <code>GetRate</code>, <code>GetRates</code>, and <code>ListSupportedPairs</code>; an HTTP health endpoint is available for infrastructure monitoring.</li>
+                </ul>
+                <p style="margin-top: 0.75rem;">
+                    External providers (fawazahmed0, ExchangeRate-API, Frankfurter) are contacted only by the polling subsystem — gRPC consumers always read from the local database, guaranteeing sub-50ms response times.
+                </p>
+                <p style="margin-top: 0.75rem;">
+                    Full architecture diagrams (component and sequence) are available in the SRS document.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ecosystem Context Modal -->
+    <div class="modal" id="context-modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('context-modal')">&times;</button>
+            <div class="modal-title">
+                <i class="fas fa-sitemap"></i>
+                <span>Ecosystem Context</span>
+            </div>
+            <div class="modal-body">
+                <p>Currency Rate Service is part of the Expense Tracker ecosystem and serves as its first independent microservice:</p>
+                <ul>
+                    <li><strong>Expense Tracker Backend (v0.3.0)</strong> &mdash; primary gRPC consumer; retrieves rates to display currency equivalents alongside transactions;</li>
+                    <li><strong>Flutter Mobile Client (v0.5.0)</strong> &mdash; indirect beneficiary via enriched transaction data from the backend;</li>
+                    <li><strong>Invoice Generator (future)</strong> &mdash; planned direct consumer for EUR↔RSD conversion in international invoices.</li>
+                </ul>
+                <p style="margin-top: 0.75rem;">
+                    The service operates autonomously — it polls and stores rates regardless of consumer availability.
+                    If unreachable, consumers gracefully degrade by showing "rate unavailable" rather than stale data.
+                    This establishes the inter-service communication pattern documented in the
+                    Expense Tracker gRPC Integration TDD (ADR-6).
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openModal(id) {
+            const el = document.getElementById(id);
+            if (el) el.classList.add('show');
+        }
+
+        function closeModal(id) {
+            const el = document.getElementById(id);
+            if (el) el.classList.remove('show');
+        }
+
+        document.addEventListener('click', function (e) {
+            if (e.target.classList.contains('modal')) {
+                e.target.classList.remove('show');
+            }
+        });
+
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape') {
+                document.querySelectorAll('.modal.show').forEach(function (m) {
+                    m.classList.remove('show');
+                });
+            }
+        });
+    </script>
+</body>
+</html>
