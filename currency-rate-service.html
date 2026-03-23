@@ -20,9 +20,9 @@
                 <span class="breadcrumbs-separator"> -> </span>
                 <span class="breadcrumbs-current">Currency Rate Service</span>
             </div>
-            <span class="status-badge" style="background: #f0f4ff; color: #3c5ff8; border: 1px solid #c7d2fe;">
-                <i class="fas fa-code-branch"></i>
-                <span>In Development</span>
+            <span class="status-badge" style="background: #f0fdf4; color: #16a34a; border: 1px solid #bbf7d0;">
+                <i class="fas fa-check-circle"></i>
+                <span>Core Implementation Complete</span>
             </span>
         </nav>
 
@@ -47,16 +47,16 @@
             <h4><i class="fas fa-clipboard-list"></i> Key Features</h4>
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0 24px;">
             <ul style="margin: 0; padding: 0;">
-                <li><i class="fas fa-check-circle"></i> Autonomous polling engine with configurable intervals per currency pair</li>
-                <li><i class="fas fa-check-circle"></i> Primary + backup provider failover with staleness flagging</li>
-                <li><i class="fas fa-check-circle"></i> gRPC API: GetRate, GetRates (batch), ListSupportedPairs</li>
-                <li><i class="fas fa-check-circle"></i> Historical rate accumulation from day one</li>
+                <li><i class="fas fa-check-circle"></i> Autonomous polling engine with per-pair goroutines and configurable intervals</li>
+                <li><i class="fas fa-check-circle"></i> Primary + backup provider failover with automatic staleness flagging</li>
+                <li><i class="fas fa-check-circle"></i> gRPC API on :50052 — GetRate, GetRates (batch), ListSupportedPairs</li>
+                <li><i class="fas fa-check-circle"></i> Historical rate accumulation from day one (full insert history)</li>
             </ul>
             <ul style="margin: 0; padding: 0;">
-                <li><i class="fas fa-check-circle"></i> Database-driven configuration — no restart required for pair/provider changes</li>
-                <li><i class="fas fa-check-circle"></i> Extensible provider adapter architecture (config-driven for standard REST APIs)</li>
-                <li><i class="fas fa-check-circle"></i> Per-provider health tracking and structured observability</li>
-                <li><i class="fas fa-check-circle"></i> Unauthenticated API — public data, internal infrastructure</li>
+                <li><i class="fas fa-check-circle"></i> Database-driven config — pairs, providers, intervals managed via DB without restart</li>
+                <li><i class="fas fa-check-circle"></i> Generic JSON adapter — new REST providers added via config only (no code changes)</li>
+                <li><i class="fas fa-check-circle"></i> HTTP health endpoints on :8090 — liveness (/healthz) and readiness (/readyz)</li>
+                <li><i class="fas fa-check-circle"></i> Structured JSON logging (slog), gRPC reflection, graceful shutdown</li>
             </ul>
             </div>
         </div>
@@ -93,11 +93,12 @@
                 Project Status
             </div>
             <p>
-                <strong>In active development.</strong> Business requirements (BRD) and system specification (SRS) are complete.
-                Repository is initialised at
-                <a href="https://github.com/DigitLock/currency-rate-service" target="_blank" class="demo-link">github.com/DigitLock/currency-rate-service</a>.
-                Go project setup and core implementation are the immediate next steps.
-                Target: three fiat pairs (RSD↔EUR, RSD↔USD, EUR↔USD) served via gRPC to the Expense Tracker Backend.
+                <strong>Core implementation complete (Stages 1–6).</strong> The service starts, polls three external providers
+                (fawazahmed0, ExchangeRate-API, Frankfurter), stores rates in PostgreSQL, serves them via gRPC,
+                and exposes health endpoints — all components verified manually.
+                Three fiat pairs live: RSD↔EUR, RSD↔USD, EUR↔USD.
+                gRPC methods <code>GetRate</code>, <code>GetRates</code>, <code>ListSupportedPairs</code> tested with grpcurl.
+                Next: E2E testing (Stage 7), Docker deployment to Hetzner (Stage 8), release <code>v0.1.0</code> (Stage 9).
             </p>
         </div>
 
@@ -110,12 +111,15 @@
                     </a>
                     &mdash; standalone microservice repository with independent deployment lifecycle.
                 </p>
-                <p><strong>/internal/polling</strong> &mdash; scheduler, adapter registry, provider adapters, health tracker.</p>
-                <p><strong>/internal/grpc</strong> &mdash; gRPC server, proto-generated code, service handlers.</p>
-                <p><strong>/internal/repository</strong> &mdash; sqlc-generated type-safe database access layer.</p>
-                <p><strong>/db</strong> &mdash; PostgreSQL schema, migrations for rate storage and database-driven configuration.</p>
-                <p><strong>/proto</strong> &mdash; protobuf definitions for CurrencyRateService (GetRate, GetRates, ListSupportedPairs).</p>
-                <p><strong>/Documentation</strong> &mdash; BRD and SRS describing business context and technical specification.</p>
+                <p><strong>/cmd/server</strong> &mdash; service entrypoint: config loading, DB connection, component wiring, graceful shutdown.</p>
+                <p><strong>/internal/adapter</strong> &mdash; RateProvider interface, generic JSON adapter (URL templates + JSONPath), adapter registry.</p>
+                <p><strong>/internal/polling</strong> &mdash; scheduler with per-pair goroutines, failover logic, pgx type converters.</p>
+                <p><strong>/internal/grpc</strong> &mdash; gRPC server handlers + protoc-generated pb files (GetRate, GetRates, ListSupportedPairs).</p>
+                <p><strong>/internal/health</strong> &mdash; HTTP health handler: /healthz (liveness) and /readyz (readiness + JSON status).</p>
+                <p><strong>/internal/repository</strong> &mdash; sqlc-generated type-safe queries for all 5 tables.</p>
+                <p><strong>/migrations</strong> &mdash; 5 golang-migrate migrations with seed data (pairs, providers, assignments, rates, health).</p>
+                <p><strong>/proto</strong> &mdash; protobuf definition for CurrencyRateService.</p>
+                <p><strong>/Documentation</strong> &mdash; BRD and SRS.</p>
             </div>
         </section>
 
@@ -128,6 +132,8 @@
                 <span class="tech-badge">PostgreSQL</span>
                 <span class="tech-badge">sqlc</span>
                 <span class="tech-badge">pgx/v5</span>
+                <span class="tech-badge">golang-migrate</span>
+                <span class="tech-badge">slog</span>
                 <span class="tech-badge">Docker</span>
                 <span class="tech-badge">buf / protoc</span>
                 <span class="tech-badge">HTTP/REST clients</span>
