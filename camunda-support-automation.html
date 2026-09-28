@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='58' fill='%233c5ff8'/><text x='50' y='50' font-family='Arial, sans-serif' font-size='70' font-weight='bold' fill='white' text-anchor='middle' dominant-baseline='central'>I K</text></svg>">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Support Automation on Camunda 8 - Igor Kudinov Portfolio</title>
+    <meta name="description" content="Customer support automation stand on Camunda 8.9 Self-Managed: BPMN, DMN routing, LLM classifier with guardrails, Kafka and REST integrations, rehearsed operations">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="css/project-page.css">
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-8PK7G7TVBX"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-8PK7G7TVBX');
+    </script>
+</head>
+<body>
+    <div class="container">
+        <nav class="breadcrumbs">
+            <div class="breadcrumbs-left">
+                <a href="https://portfolio.digitlock.systems" class="back-btn">
+                    <i class="fas fa-arrow-left"></i>
+                    <span>Back to Portfolio</span>
+                </a>
+
+                <span class="breadcrumbs-separator"> -> </span>
+
+                <span class="breadcrumbs-current">Camunda 8 Support Automation</span>
+            </div>
+
+            <span class="status-badge">
+                <i class="fas fa-tools"></i>
+                <span>Non-production Camunda license · single node · phases 0–6.5 done · 6.6 acceptance and phase 7 pending</span>
+            </span>
+        </nav>
+
+        <div class="title-section">
+            <div class="main-title">
+                <div class="title-icon">
+                    <i class="fas fa-headset"></i>
+                </div>
+                <h1>Customer Support Automation on Camunda 8 Self-Managed</h1>
+            </div>
+
+            <p class="subtitle">A ticket arrives over Kafka, an LLM with guardrails classifies it, DMN routes it, workers resolve it, and every failure mode is rehearsed and written down.</p>
+            <p class="author">Portfolio Project by Igor Kudinov</p>
+        </div>
+
+        <div class="links links-3">
+            <a href="https://github.com/DigitLock/camunda-support-automation" class="link-card" target="_blank" rel="noopener noreferrer">
+                <i class="fab fa-github"></i>
+                <div class="link-card-title">GitHub Repository</div>
+                <div class="link-card-subtitle">Models, workers, infra and docs</div>
+            </a>
+
+            <a href="https://github.com/DigitLock/camunda-support-automation/tree/main/docs/runbooks" class="link-card" target="_blank" rel="noopener noreferrer">
+                <i class="fas fa-book-open"></i>
+                <div class="link-card-title">Runbooks</div>
+                <div class="link-card-subtitle">Incidents, migration, backup, rotation</div>
+            </a>
+
+            <div class="link-card link-card-disabled">
+                <i class="fas fa-video"></i>
+                <div class="link-card-title">Screencast</div>
+                <div class="link-card-subtitle">coming soon</div>
+            </div>
+        </div>
+
+        <section class="tech-section">
+            <h3><i class="fas fa-question-circle"></i> Problem</h3>
+            <div class="description">
+                <p>
+                    A travel booking company receives support tickets in English and Russian: booking changes, cancellations
+                    with refunds, and general questions. Each ticket has to be classified, routed to the right team with a
+                    priority and an <strong>SLA deadline</strong> that depends on customer tier and booking value, and refunds need
+                    a booking lookup and a currency conversion before the customer is notified. In plain code these rules
+                    end up scattered across services, a stuck refund is a line in a log, and changing an SLA means a redeploy.
+                    A <strong>BPM engine</strong> makes every ticket a visible process instance, keeps routing and SLA policy in DMN
+                    tables that change without code, turns failures into incidents an operator can retry or migrate, and
+                    lets the SLA timer live in the model itself.
+                </p>
+            </div>
+        </section>
+
+        <section class="tech-section">
+            <h3><i class="fas fa-clipboard-check"></i> What It Proves</h3>
+            <table class="evidence-table">
+                <thead>
+                    <tr><th>Requirement</th><th>Evidence</th></tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>BPMN processes and DMN decision tables in Camunda 8</td>
+                        <td>
+                            <a href="https://github.com/DigitLock/camunda-support-automation/tree/main/processes" target="_blank" rel="noopener noreferrer">processes/</a>,
+                            <a href="https://github.com/DigitLock/camunda-support-automation/tree/main/decisions" target="_blank" rel="noopener noreferrer">decisions/</a>,
+                            <a href="https://github.com/DigitLock/camunda-support-automation/blob/main/tests/dmn/README.md" target="_blank" rel="noopener noreferrer">DMN test matrix</a> (18 cases)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Greenfield process plus ongoing improvements</td>
+                        <td>
+                            process changelog v1&rarr;v10 in the <a href="https://github.com/DigitLock/camunda-support-automation/blob/main/docs/design/process-v1.md" target="_blank" rel="noopener noreferrer">process design</a>,
+                            <a href="https://github.com/DigitLock/camunda-support-automation/blob/main/docs/runbooks/migration.md" target="_blank" rel="noopener noreferrer">migration runbook</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>LLM classifier with configurable prompts</td>
+                        <td>
+                            <a href="https://github.com/DigitLock/camunda-support-automation/tree/main/workers/llm-classifier" target="_blank" rel="noopener noreferrer">workers/llm-classifier/</a>,
+                            <a href="https://github.com/DigitLock/camunda-support-automation/tree/main/prompts" target="_blank" rel="noopener noreferrer">prompts/</a>,
+                            <a href="https://github.com/DigitLock/camunda-support-automation/blob/main/tests/classification/report-latest.md" target="_blank" rel="noopener noreferrer">accuracy report</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>AI/LLM guardrails</td>
+                        <td>
+                            <a href="https://github.com/DigitLock/camunda-support-automation/blob/main/docs/design/llm-guardrails.md" target="_blank" rel="noopener noreferrer">LLM guardrails overview</a>,
+                            <a href="https://github.com/DigitLock/camunda-support-automation/blob/main/docs/design/llm-classifier-v1.md" target="_blank" rel="noopener noreferrer">classifier design</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Support and debug in Operate, quick fixes in production</td>
+                        <td>
+                            <a href="https://github.com/DigitLock/camunda-support-automation/blob/main/docs/runbooks/incident-handling.md" target="_blank" rel="noopener noreferrer">incident-handling runbook</a>,
+                            <a href="https://github.com/DigitLock/camunda-support-automation/blob/main/docs/runbooks/timeout.md" target="_blank" rel="noopener noreferrer">timeout runbook</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>REST / JSON / Kafka integrations</td>
+                        <td>
+                            <a href="https://github.com/DigitLock/camunda-support-automation/blob/main/infra/docker-compose.yml" target="_blank" rel="noopener noreferrer">Kafka and REST connectors</a>,
+                            <a href="https://github.com/DigitLock/camunda-support-automation/tree/main/workers/booking" target="_blank" rel="noopener noreferrer">workers/booking/</a>,
+                            <a href="https://github.com/DigitLock/camunda-support-automation/tree/main/services/fx-gateway" target="_blank" rel="noopener noreferrer">services/fx-gateway/</a>,
+                            <a href="https://github.com/DigitLock/camunda-support-automation/blob/main/docs/design/integrations-v1.md" target="_blank" rel="noopener noreferrer">integrations design</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Operations on production-like systems</td>
+                        <td>
+                            <a href="https://github.com/DigitLock/camunda-support-automation/blob/main/docs/ops/install.md" target="_blank" rel="noopener noreferrer">install</a>,
+                            <a href="https://github.com/DigitLock/camunda-support-automation/blob/main/docs/runbooks/backup-restore.md" target="_blank" rel="noopener noreferrer">backup and restore</a>,
+                            <a href="https://github.com/DigitLock/camunda-support-automation/blob/main/docs/ops/upgrade.md" target="_blank" rel="noopener noreferrer">upgrade</a>,
+                            <a href="https://github.com/DigitLock/camunda-support-automation/blob/main/docs/runbooks/password-rotation.md" target="_blank" rel="noopener noreferrer">password rotation</a>,
+                            <a href="https://github.com/DigitLock/camunda-support-automation/blob/main/docs/design/operations-v1.md#2-monitoring-65" target="_blank" rel="noopener noreferrer">monitoring profile</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section class="tech-section">
+            <h3><i class="fas fa-sitemap"></i> Architecture</h3>
+            <div class="diagram">
+<pre class="mermaid">
+flowchart LR
+    subgraph external["External"]
+        claude["Claude API"]
+        ecb["frankfurter.app (ECB rates)"]
+    end
+
+    subgraph vm["Single VM — Docker Compose"]
+        subgraph core["core profile"]
+            camunda["Orchestration Cluster<br/>(camunda/camunda 8.9)<br/>Zeebe + Operate + Tasklist + Admin"]
+            connectors["Connectors 8.9"]
+            es[("Elasticsearch<br/>secondary storage")]
+        end
+        subgraph integrations["integrations profile"]
+            kafka["Kafka (KRaft, single node)"]
+            bookingapi["booking-api (Go, mock)"]
+            fxgw["fx-gateway (Go)"]
+            pg[("PostgreSQL<br/>LLM audit + analytics")]
+        end
+        subgraph workers["workers profile"]
+            wbooking["worker-booking (Go)"]
+            wclassifier["worker-llm-classifier<br/>(Python SDK)"]
+        end
+        subgraph monitoring["monitoring profile"]
+            prom["Prometheus"]
+            graf["Grafana"]
+        end
+    end
+
+    kafka -- "support.ticket.created (inbound connector)" --> connectors
+    connectors -- "support.ticket.resolved (outbound connector)" --> kafka
+    connectors -- "REST /convert" --> fxgw
+    fxgw --> ecb
+    wbooking -- "REST v2: long-poll jobs" --> camunda
+    wbooking -- "HTTP/JSON" --> bookingapi
+    wclassifier -- "REST v2: long-poll jobs" --> camunda
+    wclassifier -- "classify / answer / notify" --> claude
+    wclassifier -- "audit" --> pg
+    camunda --> es
+    connectors --> camunda
+    prom --> camunda
+    graf --> prom
+</pre>
+            </div>
+            <p class="diagram-note"><i class="fab fa-github"></i> <a href="https://github.com/DigitLock/camunda-support-automation#architecture" target="_blank" rel="noopener noreferrer">Full-size diagram in the repository README</a></p>
+        </section>
+
+        <section class="tech-section">
+            <h3><i class="fas fa-images"></i> Screenshots</h3>
+            <div class="screens">
+                <figure>
+                    <a href="static/camunda-support-automation/d-00-v10-model.png" target="_blank"><img src="static/camunda-support-automation/d-00-v10-model.png" alt="Process v10 in Camunda Modeler" loading="lazy"></a>
+                    <figcaption>Process v10 with error boundaries and the SLA timer &mdash; <a href="https://github.com/DigitLock/camunda-support-automation/blob/main/docs/design/process-v1.md" target="_blank" rel="noopener noreferrer">process design</a></figcaption>
+                </figure>
+                <figure>
+                    <a href="static/camunda-support-automation/modeler-sla-policy.png" target="_blank"><img class="fit" src="static/camunda-support-automation/modeler-sla-policy.png" alt="DMN sla-policy decision table" loading="lazy"></a>
+                    <figcaption>DMN <code>sla-policy</code> table: priority and SLA hours by tier, sentiment and booking value &mdash; <a href="https://github.com/DigitLock/camunda-support-automation/blob/main/docs/design/routing-v1.md" target="_blank" rel="noopener noreferrer">routing design</a></figcaption>
+                </figure>
+                <figure>
+                    <a href="static/camunda-support-automation/a1-02-diagram-incident.png" target="_blank"><img src="static/camunda-support-automation/a1-02-diagram-incident.png" alt="Operate showing an incident on Cancel and refund" loading="lazy"></a>
+                    <figcaption>Operate: incident on the failing element, ready for Retry &mdash; <a href="https://github.com/DigitLock/camunda-support-automation/blob/main/docs/runbooks/incident-handling.md" target="_blank" rel="noopener noreferrer">incident-handling runbook</a></figcaption>
+                </figure>
+                <figure>
+                    <a href="static/camunda-support-automation/b-04-migration-mapping.png" target="_blank"><img src="static/camunda-support-automation/b-04-migration-mapping.png" alt="Operate instance migration mapping v8 to v9" loading="lazy"></a>
+                    <figcaption>Operate: instance migration v8 &rarr; v9, element mapping &mdash; <a href="https://github.com/DigitLock/camunda-support-automation/blob/main/docs/runbooks/migration.md" target="_blank" rel="noopener noreferrer">migration runbook</a></figcaption>
+                </figure>
+                <figure>
+                    <a href="static/camunda-support-automation/g-02-grafana-alert-firing.png" target="_blank"><img src="static/camunda-support-automation/g-02-grafana-alert-firing.png" alt="Grafana CamundaIncidentsPending alert firing" loading="lazy"></a>
+                    <figcaption>Grafana: <code>CamundaIncidentsPending</code> firing on a live incident &mdash; <a href="https://github.com/DigitLock/camunda-support-automation/blob/main/docs/design/operations-v1.md#2-monitoring-65" target="_blank" rel="noopener noreferrer">monitoring design</a></figcaption>
+                </figure>
+                <figure>
+                    <a href="static/camunda-support-automation/tasklist-review-form-v2.png" target="_blank"><img src="static/camunda-support-automation/tasklist-review-form-v2.png" alt="Tasklist review classification form" loading="lazy"></a>
+                    <figcaption>Tasklist: human review of a low-confidence classification &mdash; <a href="https://github.com/DigitLock/camunda-support-automation/blob/main/docs/design/llm-classifier-v1.md" target="_blank" rel="noopener noreferrer">LLM classifier design</a></figcaption>
+                </figure>
+            </div>
+        </section>
+
+        <section class="tech-section">
+            <h3><i class="fas fa-wrench"></i> Operations</h3>
+            <div class="repo-list">
+                <p><a href="https://github.com/DigitLock/camunda-support-automation/blob/main/docs/runbooks/incident-handling.md" target="_blank" rel="noopener noreferrer">Incident handling</a> &mdash; bad data, downstream outage, configuration errors resolved in place; plus the <a href="https://github.com/DigitLock/camunda-support-automation/blob/main/docs/runbooks/timeout.md" target="_blank" rel="noopener noreferrer">timeout</a> and <a href="https://github.com/DigitLock/camunda-support-automation/blob/main/docs/runbooks/sla-escalation.md" target="_blank" rel="noopener noreferrer">SLA escalation</a> variants.</p>
+                <p><a href="https://github.com/DigitLock/camunda-support-automation/blob/main/docs/runbooks/migration.md" target="_blank" rel="noopener noreferrer">Instance migration</a> &mdash; the model was wrong: fix it in a new version, move the live instance, resolve the incident.</p>
+                <p><a href="https://github.com/DigitLock/camunda-support-automation/blob/main/docs/runbooks/backup-restore.md" target="_blank" rel="noopener noreferrer">Backup and restore</a> &mdash; Zeebe, Elasticsearch and PostgreSQL, rehearsed in three round-trips.</p>
+                <p><a href="https://github.com/DigitLock/camunda-support-automation/blob/main/docs/ops/upgrade.md" target="_blank" rel="noopener noreferrer">Upgrade</a> &mdash; patch path 8.9.19 &rarr; 8.9.21 rehearsed on a disposable lab with waiting instances.</p>
+                <p><a href="https://github.com/DigitLock/camunda-support-automation/blob/main/docs/runbooks/password-rotation.md" target="_blank" rel="noopener noreferrer">Password rotation</a> &mdash; the scoped <code>worker</code> user rotated on the running cluster without losing jobs.</p>
+                <p><a href="https://github.com/DigitLock/camunda-support-automation/blob/main/docs/design/operations-v1.md#2-monitoring-65" target="_blank" rel="noopener noreferrer">Monitoring</a> &mdash; Prometheus and Grafana profile with the pending-incidents alert.</p>
+            </div>
+        </section>
+
+        <section class="tech-section">
+            <h3><i class="fas fa-lightbulb"></i> Findings</h3>
+            <div class="repo-list">
+                <p><strong>A profile that is only in <code>.env.example</code> is not deployed.</strong> The monitoring profile sat unused for four phases &mdash; <a href="https://github.com/DigitLock/camunda-support-automation/blob/main/docs/lessons-learned.md" target="_blank" rel="noopener noreferrer">lessons learned</a></p>
+                <p><strong>The incident gauge is <code>zeebe_pending_incidents</code>, not <code>_total</code>.</strong> A live scrape corrected the design before the alert went in &mdash; <a href="https://github.com/DigitLock/camunda-support-automation/blob/main/docs/design/operations-v1.md#2-monitoring-65" target="_blank" rel="noopener noreferrer">operations design &sect;2</a></p>
+                <p><strong>A search answering 200 proves credentials, not permissions.</strong> Least privilege is proven by job activation, not by a search &mdash; <a href="https://github.com/DigitLock/camunda-support-automation/blob/main/docs/ops/install.md#workers" target="_blank" rel="noopener noreferrer">install, Workers</a></p>
+                <p><strong>The search API lags the engine.</strong> Only the write's answer is authoritative &mdash; <a href="https://github.com/DigitLock/camunda-support-automation/blob/main/docs/lessons-learned.md" target="_blank" rel="noopener noreferrer">lessons learned</a></p>
+                <p><strong>Identity indices are in no snapshot of the backup set.</strong> Verify the <code>worker</code> user after any restore &mdash; <a href="https://github.com/DigitLock/camunda-support-automation/blob/main/docs/runbooks/backup-restore.md#6-limits" target="_blank" rel="noopener noreferrer">backup and restore &sect;6</a></p>
+            </div>
+        </section>
+
+        <section class="tech-section">
+            <h3><i class="fas fa-code-branch"></i> Origin</h3>
+            <div class="description">
+                <p>
+                    This is v2 of the <a href="camunda-llm-demo.html" style="color: #3c5ff8; text-decoration: none; font-weight: 500;">Camunda LLM Ticket Refund demo</a>,
+                    which ran a single refund process on <strong>Camunda 7.21</strong> with an OpenAI worker through the External Task pattern.
+                    v2 moves to <strong>Camunda 8.9 Self-Managed</strong> and widens the scope from one refund flow to the whole support desk:
+                    Kafka as the entry point, routing and SLA policy in DMN, a Claude-based classifier with schema validation, fallback and
+                    human review, REST integrations through connectors and Go workers, and a rehearsed operations layer &mdash; incidents,
+                    instance migration, backup and restore, upgrade, monitoring and least privilege.
+                </p>
+            </div>
+        </section>
+
+        <section class="tech-section">
+            <h3><i class="fas fa-cogs"></i> Tech Stack</h3>
+            <div class="tech-stack">
+                <span class="tech-badge">Camunda 8.9 Self-Managed</span>
+                <span class="tech-badge">BPMN / DMN / FEEL</span>
+                <span class="tech-badge">Kafka</span>
+                <span class="tech-badge">Claude API</span>
+                <span class="tech-badge">Go</span>
+                <span class="tech-badge">Python</span>
+                <span class="tech-badge">PostgreSQL</span>
+                <span class="tech-badge">Elasticsearch</span>
+                <span class="tech-badge">Prometheus</span>
+                <span class="tech-badge">Grafana</span>
+                <span class="tech-badge">Docker Compose</span>
+            </div>
+        </section>
+
+        <footer class="footer">
+            <div class="support-links">
+                <a href="https://ko-fi.com/digitlock" target="_blank" class="support-btn kofi-btn">
+                    <img src="https://storage.ko-fi.com/cdn/brandasset/v2/kofi_symbol.png" alt="Ko-fi" width="20" height="20">
+                    Support Me on Ko-fi
+                </a>
+                <a href="https://github.com/sponsors/DigitLock" target="_blank" class="support-btn sponsor-btn">
+                    <i class="fas fa-heart"></i>
+                    Sponsor Me on GitHub
+                </a>
+            </div>
+            <p>Built by Igor Kudinov (2026)</p>
+            <p>Last updated 2026-09-28</p>
+        </footer>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/11.15.0/mermaid.min.js"></script>
+    <script>
+        mermaid.initialize({ startOnLoad: true, theme: 'neutral', securityLevel: 'strict' });
+    </script>
+
+<!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "78c08f08876d48af862ed96146d7cf4a"}'></script><!-- End Cloudflare Web Analytics -->
+
+</body>
+</html>
