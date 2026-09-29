@@ -69,7 +69,7 @@
             <ul style="margin: 0; padding: 0;">
                 <li><i class="fas fa-check-circle"></i> Account management across cash, bank accounts, and savings</li>
                 <li><i class="fas fa-check-circle"></i> Dual-protocol API: REST for web, gRPC for mobile client</li>
-                <li><i class="fas fa-check-circle"></i> Flutter mobile client communicating via gRPC (read-only v0.4.0)</li>
+                <li><i class="fas fa-check-circle"></i> Flutter mobile client communicating via gRPC (v0.5.0, in development)</li>
                 <li><i class="fas fa-check-circle"></i> Responsive Vue.js interface optimized for mobile and desktop</li>
             </ul>
             </div>
@@ -99,6 +99,12 @@
             <div class="link-card-title">Live Demo</div>
             <div class="link-card-subtitle">Try the application</div>
             </a>
+
+            <a href="https://staging.digitlock.systems" class="link-card" target="_blank" rel="noopener noreferrer" style="grid-column: 1 / -1;">
+            <i class="fas fa-flask"></i>
+            <div class="link-card-title">Staging</div>
+            <div class="link-card-subtitle">Latest backend build (v0.4.1)</div>
+            </a>
         </div>
 
         <div class="info-box">
@@ -111,7 +117,9 @@
             and gRPC API for mobile integration.
             <a href="https://demo-expensetracker.digitlock.systems/" target="_blank" class="demo-link">Try the demo</a>
             to explore all features including accounts, categories, transactions and financial reports.
-            Flutter mobile client (v0.4.0) is in active development, connecting via gRPC at <code>46.224.29.194:50051</code>.
+            Backend v0.4.1 is running on
+            <a href="https://staging.digitlock.systems" target="_blank" rel="noopener noreferrer" class="demo-link">staging</a>.
+            Flutter mobile client v0.5.0 is in development and connects to the backend over gRPC.
             </p>
         </div>
 
@@ -304,8 +312,8 @@
             </div>
             <div class="modal-body">
                 <p>
-                    The live demo environment is planned as the next milestone once the core Vue.js UI is ready.
-                    It will include:
+                    The <a href="https://demo-expensetracker.digitlock.systems/" target="_blank" rel="noopener noreferrer">live demo</a> is available, and the latest backend build runs on <a href="https://staging.digitlock.systems" target="_blank" rel="noopener noreferrer">staging</a>.
+                    It includes:
                 </p>
                 <ul>
                     <li>test tenant with sample family and accounts;</li>
@@ -314,7 +322,7 @@
                     <li>ability to safely add your own test entries.</li>
                 </ul>
                 <p style="margin-top: 0.75rem;">
-                    For now, you can explore the implementation details in the GitHub repository.
+                    Implementation details are in the <a href="https://github.com/DigitLock/expense-tracker" target="_blank" rel="noopener noreferrer">GitHub repository</a>.
                 </p>
             </div>
         </div>
