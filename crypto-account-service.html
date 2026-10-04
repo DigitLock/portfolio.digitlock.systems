@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='58' fill='%233c5ff8'/><text x='50' y='50' font-family='Arial, sans-serif' font-size='70' font-weight='bold' fill='white' text-anchor='middle' dominant-baseline='central'>I K</text></svg>">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crypto Account Service - Igor Kudinov Portfolio</title>
+    <meta name="description" content="Reference design of a crypto account service: one view of exchange accounts and self-custody wallets, and non-custodial card spend settled on-chain. Documentation complete, implementation planned.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="css/project-page.css">
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-8PK7G7TVBX"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-8PK7G7TVBX');
+    </script>
+</head>
+<body>
+    <div class="container">
+        <nav class="breadcrumbs">
+            <div class="breadcrumbs-left">
+                <a href="https://portfolio.digitlock.systems" class="back-btn">
+                    <i class="fas fa-arrow-left"></i>
+                    <span>Back to Portfolio</span>
+                </a>
+
+                <span class="breadcrumbs-separator"> -> </span>
+
+                <span class="breadcrumbs-current">Crypto Account Service</span>
+            </div>
+
+            <span class="status-badge">
+                <i class="fas fa-file-alt"></i>
+                <span>Documentation Complete · Implementation Planned</span>
+            </span>
+        </nav>
+
+        <div class="title-section">
+            <div class="main-title">
+                <div class="title-icon">
+                    <i class="fas fa-credit-card"></i>
+                </div>
+                <h1>Crypto Account Service</h1>
+            </div>
+
+            <p class="subtitle">One view of a user's crypto accounts, and card spend from a self-custody wallet without custody.</p>
+            <p class="author">Portfolio Project by Igor Kudinov</p>
+        </div>
+
+        <div class="links links-3">
+            <a href="https://github.com/DigitLock/crypto-account-service" class="link-card" target="_blank" rel="noopener noreferrer">
+                <i class="fab fa-github"></i>
+                <div class="link-card-title">GitHub Repository</div>
+                <div class="link-card-subtitle">Requirements, design, roadmap</div>
+            </a>
+
+            <a href="https://github.com/DigitLock/crypto-account-service/tree/docs-v1.0" class="link-card" target="_blank" rel="noopener noreferrer">
+                <i class="fas fa-book-open"></i>
+                <div class="link-card-title">Documentation Set</div>
+                <div class="link-card-subtitle">Approved v1.0 · 26 documents</div>
+            </a>
+
+            <a href="https://github.com/DigitLock/crypto-account-service/blob/docs-v1.0/docs/prd/card-spend.md" class="link-card" target="_blank" rel="noopener noreferrer">
+                <i class="fas fa-route"></i>
+                <div class="link-card-title">PRD &mdash; Card Spend</div>
+                <div class="link-card-subtitle">Start here: the card flow</div>
+            </a>
+        </div>
+
+        <div class="info-box">
+            <div class="info-box-title">
+                <i class="fas fa-rocket"></i>
+                Project Status
+            </div>
+            <p>
+                <strong>Requirements and design are approved: version 1.0, tag <code>docs-v1.0</code>, 2026-10-04.</strong>
+                Implementation has not started; there is no running service and no demo.
+                Next milestone: S1 &mdash; Contracts (<code>v0.1.0</code>). Order, versions and log:
+                <a href="https://github.com/DigitLock/crypto-account-service/blob/main/docs/roadmap.md" target="_blank" rel="noopener noreferrer" style="color: #92400e; font-weight: 600;">roadmap</a>.
+            </p>
+        </div>
+
+        <section class="tech-section">
+            <h3><i class="fas fa-question-circle"></i> Problem</h3>
+            <div class="repo-list">
+                <p>A custodial crypto card makes the user pre-fund a balance the issuer controls.</p>
+                <p>A card authorization must be answered within 2&ndash;3 seconds, but an ERC-20 token has no hold and the wallet is not under the platform's control.</p>
+                <p>The same authorization can arrive twice and must not charge the cardholder twice.</p>
+                <p>Consuming systems need one view of a user's crypto accounts across exchanges and self-custody wallets.</p>
+            </div>
+        </section>
+
+        <section class="tech-section">
+            <h3><i class="fas fa-bullseye"></i> Scope</h3>
+            <div class="features" style="margin-bottom: 0;">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 0 24px;">
+                <ul style="margin: 0; padding: 0;">
+                    <li><i class="fas fa-check-circle"></i> <strong>Card spend:</strong> on-chain debit wallet &rarr; treasury at authorization time. No pre-funding, no custody.</li>
+                    <li><i class="fas fa-check-circle"></i> <strong>Authorization API</strong> for an issuer processor, HTTP/JSON, modelled on JIT Funding: authorize, reverse, refund, status.</li>
+                    <li><i class="fas fa-check-circle"></i> <strong>Spend contract:</strong> debit with expiry, refund, daily limit, roles, pause. Holds no tokens.</li>
+                </ul>
+                <ul style="margin: 0; padding: 0;">
+                    <li><i class="fas fa-check-circle"></i> <strong>Exchange accounts, read-only:</strong> Binance balances (spot, funding, Earn) and history.</li>
+                    <li><i class="fas fa-check-circle"></i> Canonical ledger for exchanges and chains; reconciliation against the on-chain balance.</li>
+                    <li><i class="fas fa-check-circle"></i> <strong>gRPC API</strong> for consumers, multi-tenant. First consumer: Expense Tracker.</li>
+                </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="tech-section">
+            <h3><i class="fas fa-lightbulb"></i> Design Highlights</h3>
+            <table class="evidence-table">
+                <thead>
+                    <tr><th>Topic</th><th>Decision</th></tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Non-custodial card spend</td>
+                        <td>Token allowance on the cardholder's wallet. Tokens move wallet &rarr; treasury at authorization; the contract holds nothing.<br>
+                            <a href="https://github.com/DigitLock/crypto-account-service/blob/docs-v1.0/docs/adr/0009-card-spend-controller.md" target="_blank" rel="noopener noreferrer">ADR-9</a>,
+                            <a href="https://github.com/DigitLock/crypto-account-service/blob/docs-v1.0/docs/prd/card-spend.md" target="_blank" rel="noopener noreferrer">PRD</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Synchronous card, asynchronous chain</td>
+                        <td>Approve only after the debit is preconfirmed or included. Deadline &rarr; decline. Every debit expires on-chain; a late debit is refunded automatically.<br>
+                            <a href="https://github.com/DigitLock/crypto-account-service/blob/docs-v1.0/docs/adr/0012-authorization-decision-timing.md" target="_blank" rel="noopener noreferrer">ADR-12</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>No double debit</td>
+                        <td>Three independent layers: request idempotency, nonce stored before send, single-use authId in the contract.<br>
+                            <a href="https://github.com/DigitLock/crypto-account-service/blob/docs-v1.0/docs/srs/card-spend.md" target="_blank" rel="noopener noreferrer">SRS &mdash; Card Spend</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Bounded platform power</td>
+                        <td>Exchange keys are read-only. The only key that can move tokens lives in a separate binary. It can move them only wallet &rarr; treasury within allowance and daily limit, and back as refunds.<br>
+                            <a href="https://github.com/DigitLock/crypto-account-service/blob/docs-v1.0/docs/adr/0003-read-only-exchanges-isolated-write-path.md" target="_blank" rel="noopener noreferrer">ADR-3</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>One ledger for exchanges and chains</td>
+                        <td>Canonical entries with legs, idempotent import, raw record kept, incremental pull by sequence.<br>
+                            <a href="https://github.com/DigitLock/crypto-account-service/blob/docs-v1.0/docs/adr/0005-canonical-ledger.md" target="_blank" rel="noopener noreferrer">ADR-5</a>,
+                            <a href="https://github.com/DigitLock/crypto-account-service/blob/docs-v1.0/docs/srs/core.md" target="_blank" rel="noopener noreferrer">SRS &mdash; Core</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="repo-list" style="margin-top: 12px;">
+                <p>Exchange integration, on-chain indexing and real-time signals: <a href="https://github.com/DigitLock/crypto-account-service/blob/docs-v1.0/README.md#design-highlights" target="_blank" rel="noopener noreferrer">design highlights in the README</a>.</p>
+            </div>
+        </section>
+
+        <section class="tech-section">
+            <h3><i class="fas fa-sitemap"></i> System Context</h3>
+            <div class="diagram diagram-wide">
+                <a href="static/crypto-account-service/c4-context.png" target="_blank" rel="noopener">
+                    <img src="static/crypto-account-service/c4-context.png" width="900" height="628" alt="C4 system context diagram of Crypto Account Service" loading="lazy">
+                </a>
+            </div>
+            <p class="diagram-note"><i class="fab fa-github"></i> Rendered from docs/c4/context.md (docs-v1.0) in the Mermaid live editor; title removed, relation labels repositioned. <a href="https://github.com/DigitLock/crypto-account-service/blob/docs-v1.0/docs/c4/context.md" target="_blank" rel="noopener noreferrer">Context</a> and <a href="https://github.com/DigitLock/crypto-account-service/blob/docs-v1.0/docs/c4/container.md" target="_blank" rel="noopener noreferrer">container</a> diagrams in the repository</p>
+        </section>
+
+        <section class="tech-section">
+            <h3><i class="fas fa-exchange-alt"></i> Card Authorization Flow</h3>
+            <div class="diagram diagram-wide">
+<pre class="mermaid">
+sequenceDiagram
+    autonumber
+    participant P as Issuer processor
+    participant A as card-auth
+    participant R as CRS
+    participant N as EVM network
+    participant S as server (indexer)
+
+    P->>A: Authorize(auth_id, card_ref, amount)
+    A->>A: Idempotency, card status, limit
+    A->>R: Rate, if currency is not USD
+    A->>N: Read balance and allowance
+    alt a check fails
+        A-->>P: DECLINED + reason
+    else all checks pass
+        A->>N: debit(wallet, amount, authId, validUntil)
+        N-->>A: Preconfirmed or included
+        A-->>P: APPROVED
+    end
+    Note over A,S: Asynchronous part
+    N-->>A: Finality reached → debit confirmed
+    S->>N: Read Debited event
+    S->>S: Ledger entry, reconciliation
+</pre>
+            </div>
+            <p class="diagram-note"><i class="fab fa-github"></i> Source and edge cases EC-1 &hellip; EC-12: <a href="https://github.com/DigitLock/crypto-account-service/blob/docs-v1.0/docs/prd/card-spend.md#332-product-flow" target="_blank" rel="noopener noreferrer">PRD &mdash; Card Spend &sect;3.3.2</a></p>
+        </section>
+
+        <section class="tech-section">
+            <h3><i class="fas fa-shield-alt"></i> Boundaries</h3>
+            <div class="repo-list">
+                <p>CAS never holds user funds and never signs for the cardholder.</p>
+                <p>CAS never trades or withdraws on exchanges and never serves rates.</p>
+                <p>CAS stores no personal data: the owner is an opaque reference.</p>
+                <p>Test networks only: Anvil and Base Sepolia. No mainnet.</p>
+                <p>No real keys and no real balances.</p>
+                <p>Exchange access is read-only.</p>
+            </div>
+        </section>
+
+        <section class="tech-section">
+            <h3><i class="fas fa-book-open"></i> Documentation Set</h3>
+            <div class="repo-list">
+                <p>BRD, 2 PRDs, 4 SRS, 13 ADRs, C4 context and containers, glossary, roadmap. 26 documents, about 4,500 lines. Markdown in the repository.</p>
+                <p>Traceability: business goal &rarr; business requirement &rarr; user story &rarr; functional requirement. Each functional requirement is one testable statement.</p>
+                <p>Map, conventions and identifiers: <a href="https://github.com/DigitLock/crypto-account-service/blob/docs-v1.0/docs/README.md" target="_blank" rel="noopener noreferrer">docs/README</a>.</p>
+            </div>
+            <table class="evidence-table first-col-fit" style="margin-top: 12px;">
+                <thead>
+                    <tr><th>Time</th><th>Read</th></tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>5 minutes</td>
+                        <td>
+                            <a href="https://github.com/DigitLock/crypto-account-service/blob/docs-v1.0/docs/brd.md" target="_blank" rel="noopener noreferrer">BRD</a> &sect;2&ndash;&sect;4 and
+                            <a href="https://github.com/DigitLock/crypto-account-service/blob/docs-v1.0/docs/c4/context.md" target="_blank" rel="noopener noreferrer">the context diagram</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>20 minutes</td>
+                        <td>
+                            <a href="https://github.com/DigitLock/crypto-account-service/blob/docs-v1.0/docs/prd/card-spend.md" target="_blank" rel="noopener noreferrer">PRD &mdash; Card Spend</a>,
+                            <a href="https://github.com/DigitLock/crypto-account-service/blob/docs-v1.0/docs/adr/0009-card-spend-controller.md" target="_blank" rel="noopener noreferrer">ADR-9</a>,
+                            <a href="https://github.com/DigitLock/crypto-account-service/blob/docs-v1.0/docs/adr/0012-authorization-decision-timing.md" target="_blank" rel="noopener noreferrer">ADR-12</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>1 hour</td>
+                        <td>
+                            <a href="https://github.com/DigitLock/crypto-account-service/blob/docs-v1.0/docs/srs/card-spend.md" target="_blank" rel="noopener noreferrer">SRS &mdash; Card Spend</a>, then
+                            <a href="https://github.com/DigitLock/crypto-account-service/blob/docs-v1.0/docs/srs/core.md" target="_blank" rel="noopener noreferrer">SRS &mdash; Core</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section class="tech-section">
+            <h3><i class="fas fa-flag-checkered"></i> Milestones</h3>
+            <table class="evidence-table first-col-fit">
+                <thead>
+                    <tr><th>ID</th><th>Content</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>S1</td><td>Contracts <code>CardSpendController</code> and <code>MockUSDC</code>, tests on a local chain</td></tr>
+                    <tr><td>C1</td><td>Core: tenants, connections, encrypted secrets, gRPC API, CI</td></tr>
+                    <tr><td>S2</td><td><code>card-auth</code>: end-to-end authorization locally, then on Base Sepolia</td></tr>
+                    <tr><td>S3</td><td>Event indexer into the ledger; reconciliation</td></tr>
+                    <tr><td>X1</td><td>Binance balances: spot, funding, Earn; key permission check; rate limiter</td></tr>
+                    <tr><td>X2</td><td>Binance history; backfill and incremental sync; completeness check</td></tr>
+                    <tr><td>W1</td><td>Real-time triggers from Binance account events</td></tr>
+                </tbody>
+            </table>
+            <div class="repo-list" style="margin-top: 12px;">
+                <p>Outlined in the BRD: second exchange, Kraken, Expense Tracker integration. Status of each milestone: <a href="https://github.com/DigitLock/crypto-account-service/blob/main/docs/roadmap.md" target="_blank" rel="noopener noreferrer">roadmap</a>.</p>
+            </div>
+        </section>
+
+        <section class="tech-section">
+            <h3><i class="fas fa-user-edit"></i> How It Was Produced</h3>
+            <div class="repo-list">
+                <p>
+                    Author-led, AI-assisted. Scope, decisions and review: the author. Text and diagrams: an AI assistant,
+                    following the author's templates. No document is accepted without the author's review. Details:
+                    <a href="https://github.com/DigitLock/crypto-account-service/blob/docs-v1.0/README.md#how-the-documentation-was-produced" target="_blank" rel="noopener noreferrer">README</a>.
+                </p>
+            </div>
+        </section>
+
+        <section class="tech-section">
+            <h3><i class="fas fa-link"></i> Related Services</h3>
+            <div class="repo-list">
+                <p><a href="currency-rate-service.html">Currency Rate Service</a>: rates. CAS never serves prices.</p>
+                <p><a href="expense-tracker.html">Expense Tracker</a>: first consumer of balances and history.</p>
+            </div>
+        </section>
+
+        <section class="tech-section">
+            <h3><i class="fas fa-cogs"></i> Tech Stack (planned)</h3>
+            <div class="tech-stack">
+                <span class="tech-badge">Go</span>
+                <span class="tech-badge">PostgreSQL</span>
+                <span class="tech-badge">gRPC</span>
+                <span class="tech-badge">go-ethereum</span>
+                <span class="tech-badge">Solidity</span>
+                <span class="tech-badge">Foundry</span>
+                <span class="tech-badge">OpenZeppelin</span>
+                <span class="tech-badge">Anvil</span>
+                <span class="tech-badge">Base Sepolia</span>
+                <span class="tech-badge">Docker</span>
+            </div>
+        </section>
+
+        <footer class="footer">
+            <div class="support-links">
+                <a href="https://ko-fi.com/digitlock" target="_blank" class="support-btn kofi-btn">
+                    <img src="https://storage.ko-fi.com/cdn/brandasset/v2/kofi_symbol.png" alt="Ko-fi" width="20" height="20">
+                    Support Me on Ko-fi
+                </a>
+                <a href="https://github.com/sponsors/DigitLock" target="_blank" class="support-btn sponsor-btn">
+                    <i class="fas fa-heart"></i>
+                    Sponsor Me on GitHub
+                </a>
+            </div>
+            <p>Built by Igor Kudinov (2026)</p>
+            <p>Last updated 2026-10-04</p>
+        </footer>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/11.15.0/mermaid.min.js"></script>
+    <script>
+        mermaid.initialize({ startOnLoad: true, theme: 'neutral', securityLevel: 'strict' });
+    </script>
+
+<!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "78c08f08876d48af862ed96146d7cf4a"}'></script><!-- End Cloudflare Web Analytics -->
+
+</body>
+</html>

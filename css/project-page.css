@@ -701,6 +701,11 @@ h1 {
     width: 34%;
 }
 
+.evidence-table.first-col-fit td:first-child {
+    width: 1%;
+    white-space: nowrap;
+}
+
 .evidence-table a {
     color: #3c5ff8;
     text-decoration: none;
@@ -717,6 +722,21 @@ h1 {
     max-height: 600px;
     overflow: auto;
     text-align: center;
+}
+
+.diagram.diagram-wide {
+    max-height: none;
+    overflow-x: auto;
+}
+
+.diagram.diagram-wide svg,
+.diagram.diagram-wide img {
+    min-width: 900px;
+}
+
+.diagram.diagram-wide img {
+    max-width: 100%;
+    height: auto;
 }
 
 .diagram-note {
